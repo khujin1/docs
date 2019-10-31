@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Command Line Interface - FlashBase Docs</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Command Line Interface";
+    var mkdocs_page_input_path = "command-line-interface.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> FlashBase Docs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Introduction</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Command Line Interface</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#command-line-interface">Command Line Interface</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#cluster">Cluster 명령어</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">FlashBase Docs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Command Line Interface</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="command-line-interface">Command Line Interface</h1>
+<p>Command Line Interface(CLI) 도구에서 사용할 수 있는 명령어를 설명합니다.</p>
+<h2 id="cluster">Cluster 명령어</h2>
+<p>FlashBase Cluster를 관리하는 명령어들은 아래와 같습니다.​</p>
+<ul>
+<li><a href="#cluster-start">cluster start</a></li>
+<li><a href="#cluster-configure">cluster configure</a></li>
+<li><a href="#cluster-stop">cluster stop</a></li>
+<li><a href="#cluster-clean">cluster clean</a></li>
+<li><a href="#cluster-restart">cluster restart</a>
+​</li>
+</ul>
+<h3 id="cluster-configure">cluster configure</h3>
+<p>​
+ <code>redis.properties</code> 정보를 바탕으로 <code>redis-master.conf.template</code>와 <code>redis-slave.conf.template</code> 을 통해 <code>redis-&lt;port&gt;.conf</code> 파일을 각 master host와 slave host의  <code>&lt;sr2-home&gt;/conf/redis</code> 아래에 생성합니다.
+​
+​</p>
+<h3 id="cluster-start">cluster start</h3>
+<p>​
+cluster start 실행 시 아래의 3가지 기능을 수행합니다.
+​
+* 기존 log 백업
+* 필요 directory 생성
+* redis process 실행
+​
+​
+​</p>
+<h5 id="log">기존 log 백업</h5>
+<p>​
+각 master host와 slave host의 <code>&lt;sr2-home&gt;/logs/backup/&lt;timestamp-%Y%m%d-%H%M%S&gt;</code> 에 log 파일을 백업합니다.
+​
+​
+​</p>
+<h5 id="directory">필요 directory 생성</h5>
+<p>​
+각 master host와 slave host에 <code>&lt;sr2-redis-data&gt;</code>, <code>&lt;sr2-flash-db-path&gt;</code> 디렉토리를 생성합니다.
+​
+이미 존재하는 경우 건너뜁니다.
+​
+​
+​</p>
+<h6 id="ssd">ssd 사용 시</h6>
+<p>​
+<code>&lt;sr2-redis-data&gt;</code> = <code>&lt;prefix-redis-data&gt;&lt;number&gt;/&lt;user&gt;</code>
+​
+<code>&lt;sr2-flash-db-path&gt;</code> = <code>&lt;prefix-flash-db-path&gt;&lt;number&gt;/&lt;user&gt;/db/db-&lt;port&gt;</code>
+​</p>
+<h6 id="ssd_1">ssd 미사용 시</h6>
+<p>​
+<code>&lt;sr2-redis-data&gt;</code> = <code>&lt;prefix-redis-data&gt;/&lt;user&gt;</code>
+​
+<code>&lt;sr2-flash-db-path&gt;</code> = <code>&lt;prefix-flash-db-path&gt;/&lt;user&gt;/db/db-&lt;port&gt;</code>
+​
+​
+​</p>
+<blockquote>
+<p><code>&lt;prefix-redis-data&gt;</code> = <code>SR2_REDIS_DATA</code> of <code>redis.properties</code></p>
+<p><code>&lt;prefix-flash-db-path&gt;</code> = <code>SR2_FLASH_DB_PATH</code> of <code>redis.properties</code></p>
+<p><code>&lt;user&gt;</code> = user name of OS ($USER)
+​
+​
+​</p>
+</blockquote>
+<h5 id="redis-process">redis process 생성</h5>
+<p>​
+각 master host와 slave host에 redis server를 실행시킵니다.
+​
+적용할 conf 파일 경로: <code>&lt;sr2-home&gt;/conf/redis/redis-&lt;port&gt;.conf</code>
+​
+log 저장 경로: <code>&lt;sr2-home&gt;/logs/servers-&lt;time-stamp-%Y%m%d-%H%M&gt;-&lt;port&gt;.log</code>
+​
+​
+​</p>
+<h4 id="options">options</h4>
+<p>​
+* --profile
+​
+  redis server 실행 시 아래의 환경변수가 추가되어 실행됩니다.
+​
+  * <code>MALLOC_CONF=prof_leak:true,lg_prof_sample:0,prof_final:true</code>
+​
+  * <code>LD_PRELOAD=$SR2_REDIS_LIB/native/libjemalloc.so</code>
+​
+​
+​</p>
+<h4 id="error">Error</h4>
+<p>​
+* error code 11
+​</p>
+<pre><code>$ cluster start
+...
+[ErrorCode 11] Fail to start... Must be checked running MASTER redis processes!
+We estimate that redis process is &lt;alive-redis-count&gt;.
+</code></pre>
+
+<p>​
+사용하려고 하는 master port에 이미 redis process가 실행중인 경우입니다.
+​
+cluster stop 혹은 kill 등을 통해 해당 port에 실행중인 redis를 종료시켜야 합니다.
+​
+​
+​
+* error code 12
+​</p>
+<pre><code>$ cluster start
+...
+[ErrorCode 12] Fail to start... Must be checked running SLAVE redis processes!
+We estimate that redis process is &lt;alive-redis-count&gt;.
+</code></pre>
+
+<p>​
+사용하려고 하는 slave port에 이미 redis process가 실행중인 경우입니다.
+​
+cluster stop 혹은 kill 등을 통해 해당 port에 실행중인 redis를 종료시켜야 합니다.
+​
+​
+​
+* conf file not exist
+​</p>
+<pre><code>$ cluster start
+...
+FileNotExistError: '&lt;sr2-home&gt;/conf/redis/redis-&lt;port&gt;.conf'
+</code></pre>
+
+<p>​
+cluster configure 명령어를 실행시킨 후 cluster start를 진행하세요.
+​
+​
+​
+* max try error
+​</p>
+<pre><code>$ cluster start
+...
+max try error
+</code></pre>
+
+<p>​
+redis log를 확인하세요.
+​
+​
+​</p>
+<h3 id="cluster-stop">cluster stop</h3>
+<p>​
+각 master host와 slave host의 redis process를 종료합니다. (SIGINT)
+​
+​
+​</p>
+<h5 id="options_1">options</h5>
+<p>​
+* --force
+​
+  redis process를 강제로 종료합니다. (SIGKILL)
+​
+​
+​</p>
+<h3 id="cluster-create">cluster create</h3>
+<p>​
+(준비중)
+​
+​
+​</p>
+<h3 id="cluster-clean">cluster clean</h3>
+<p>​
+cluster clean 실행 시 아래의 3가지 기능을 수행합니다.
+​
+* redis conf 삭제
+​
+* redis data 삭제
+​
+​
+​</p>
+<h5 id="redis-conf">redis conf 삭제</h5>
+<p>​
+각 master hostd와 slave host에서 <code>&lt;sr2-home&gt;/conf/redis/redis-&lt;port&gt;.conf</code> 를 삭제합니다.
+​
+​
+​</p>
+<h5 id="redis-data">redis data 삭제</h5>
+<p>​
+각 master host와 slave host에서 <code>&lt;sr2-flash-db-path&gt;</code> 와 <code>&lt;sr2-redis-data&gt;/appendonly-&lt;port&gt;.aof</code> 그리고 <code>&lt;sr2-redis-data&gt;/dump-&lt;port&gt;.rdb</code> 파일을 삭제합니다.
+​
+​
+​</p>
+<h6 id="ssd_2">ssd 사용 시</h6>
+<p>​
+<code>&lt;sr2-redis-data&gt;</code> = <code>&lt;prefix-redis-data&gt;&lt;number&gt;/&lt;user&gt;</code>
+​
+<code>&lt;sr2-flash-db-path&gt;</code> = <code>&lt;prefix-flash-db-path&gt;&lt;number&gt;/&lt;user&gt;/db/db-&lt;port&gt;</code>
+​</p>
+<h6 id="ssd_3">ssd 미사용 시</h6>
+<p>​
+<code>&lt;sr2-redis-data&gt;</code> = <code>&lt;prefix-redis-data&gt;/&lt;user&gt;</code>
+​
+<code>&lt;sr2-flash-db-path&gt;</code> = <code>&lt;prefix-flash-db-path&gt;/&lt;user&gt;/db/db-&lt;port&gt;</code>
+​
+​
+​</p>
+<blockquote>
+<p><code>&lt;prefix-redis-data&gt;</code> = <code>SR2_REDIS_DATA</code> of <code>redis.properties</code></p>
+<p><code>&lt;prefix-flash-db-path&gt;</code> = <code>SR2_FLASH_DB_PATH</code> of <code>redis.properties</code></p>
+<p><code>&lt;user&gt;</code> = user name of OS ($USER)
+​
+​
+​</p>
+</blockquote>
+<h5 id="options_2">options</h5>
+<p>​
+* --nodes / --reset / --all
+​
+  redis node conf 파일도 같이 삭제합니다.
+​
+* --logs
+​
+  redis conf 삭제와 redis data 삭제는 진행하지 않습니다.
+​
+  각 master host에서 <code>&lt;sr2-home&gt;/logs/*.log</code> 파일을 삭제합니다.
+​
+​
+​
+​
+​</p>
+<h3 id="cluster-restart">cluster restart</h3>
+<p>​
+cluster를 재시작합니다.
+​
+cluster stop + cluster start
+​
+​
+​</p>
+<h5 id="options_3">options</h5>
+<p>​
+* --force-stop
+​
+  redis process 종료 시 강제로 종료시킵니다. (SIGKILL)
+​
+  cluster stop --force + cluster start
+​
+* --profile
+​
+  cluster start 시 profile 옵션을 추가합니다.
+​
+  cluster stop + cluster start --profile
+​
+* --reset
+​
+  redis process 종료 후 cluster 초기화를 하고 redis process를 실행시킵니다.
+​
+  cluster stop + cluster clean --reset + cluster start
+​
+* --cluster
+​
+  --reset option 사용 시 사용할 수 있습니다. cluster 재시작 이후 cluster create를 진행합니다.
+​
+  cluster stop + cluster clean --reset + cluster start + cluster create
+​
+​
+​</p>
+<h3 id="cluster-edit">cluster edit</h3>
+<p>​
+cluster edit \<target> 형식입니다. target 파일을 에디터로 수정합니다.
+​
+사용가능한 target은 main, template, thrift가 있으며 default value는 main입니다.
+​
+​
+​</p>
+<h5 id="cluster-edit-main">cluster edit main</h5>
+<p>​
+<code>&lt;sr2-home&gt;/conf/redis.properties</code> 파일을 에디터로 불러와 수정합니다.
+​
+​
+​</p>
+<h5 id="cluster-edit-template-master">cluster edit template --master</h5>
+<p>​
+<code>&lt;sr2-home&gt;/conf/redis-master.conf.template</code> 파일을 에디터로 불러와 수정합니다.
+​
+​
+​</p>
+<h5 id="cluster-edit-template-slave">cluster edit template --slave</h5>
+<p>​
+<code>&lt;sr2-home&gt;/conf/redis-slave.conf.template</code> 파일을 에디터로 불러와 수정합니다.
+​
+​
+​</p>
+<h5 id="cluster-edit-thrift">cluster edit thrift</h5>
+<p>​
+<code>&lt;sr2-home&gt;/conf/thriftserver.properties</code> 파일을 에디터로 불러와 수정합니다.
+​
+​</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href=".." class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
