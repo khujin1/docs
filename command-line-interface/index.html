@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="FlashBase Team">
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>Command Line Interface - FlashBase Docs</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "Command Line Interface";
     var mkdocs_page_input_path = "command-line-interface.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/docs/command-line-interface/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -100,6 +100,8 @@
     <li>Command Line Interface</li>
     <li class="wy-breadcrumbs-aside">
       
+        <a href="https://github.com/mnms/docs/edit/master/docs/command-line-interface.md"> Edit on source repository</a>
+      
     </li>
   </ul>
   <hr/>
@@ -107,9 +109,9 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="command-line-interface">Command Line Interface</h1>
+                <h1 id="command-line-interface">Command Line Interface<a class="headerlink" href="#command-line-interface" title="Permanent link">&para;</a></h1>
 <p>Command Line Interface(CLI) 도구에서 사용할 수 있는 명령어를 설명합니다.</p>
-<h2 id="cluster">Cluster 명령어</h2>
+<h2 id="cluster">Cluster 명령어<a class="headerlink" href="#cluster" title="Permanent link">&para;</a></h2>
 <p>FlashBase Cluster를 관리하는 명령어들은 아래와 같습니다.​</p>
 <ul>
 <li><a href="#cluster-start">cluster start</a></li>
@@ -119,12 +121,12 @@
 <li><a href="#cluster-restart">cluster restart</a>
 ​</li>
 </ul>
-<h3 id="cluster-configure">cluster configure</h3>
+<h3 id="cluster-configure">cluster configure<a class="headerlink" href="#cluster-configure" title="Permanent link">&para;</a></h3>
 <p>​
  <code>redis.properties</code> 정보를 바탕으로 <code>redis-master.conf.template</code>와 <code>redis-slave.conf.template</code> 을 통해 <code>redis-&lt;port&gt;.conf</code> 파일을 각 master host와 slave host의  <code>&lt;sr2-home&gt;/conf/redis</code> 아래에 생성합니다.
 ​
 ​</p>
-<h3 id="cluster-start">cluster start</h3>
+<h3 id="cluster-start">cluster start<a class="headerlink" href="#cluster-start" title="Permanent link">&para;</a></h3>
 <p>​
 cluster start 실행 시 아래의 3가지 기능을 수행합니다.
 ​
@@ -134,13 +136,13 @@ cluster start 실행 시 아래의 3가지 기능을 수행합니다.
 ​
 ​
 ​</p>
-<h5 id="log">기존 log 백업</h5>
+<h5 id="log">기존 log 백업<a class="headerlink" href="#log" title="Permanent link">&para;</a></h5>
 <p>​
 각 master host와 slave host의 <code>&lt;sr2-home&gt;/logs/backup/&lt;timestamp-%Y%m%d-%H%M%S&gt;</code> 에 log 파일을 백업합니다.
 ​
 ​
 ​</p>
-<h5 id="directory">필요 directory 생성</h5>
+<h5 id="directory">필요 directory 생성<a class="headerlink" href="#directory" title="Permanent link">&para;</a></h5>
 <p>​
 각 master host와 slave host에 <code>&lt;sr2-redis-data&gt;</code>, <code>&lt;sr2-flash-db-path&gt;</code> 디렉토리를 생성합니다.
 ​
@@ -148,13 +150,13 @@ cluster start 실행 시 아래의 3가지 기능을 수행합니다.
 ​
 ​
 ​</p>
-<h6 id="ssd">ssd 사용 시</h6>
+<h6 id="ssd">ssd 사용 시<a class="headerlink" href="#ssd" title="Permanent link">&para;</a></h6>
 <p>​
 <code>&lt;sr2-redis-data&gt;</code> = <code>&lt;prefix-redis-data&gt;&lt;number&gt;/&lt;user&gt;</code>
 ​
 <code>&lt;sr2-flash-db-path&gt;</code> = <code>&lt;prefix-flash-db-path&gt;&lt;number&gt;/&lt;user&gt;/db/db-&lt;port&gt;</code>
 ​</p>
-<h6 id="ssd_1">ssd 미사용 시</h6>
+<h6 id="ssd_1">ssd 미사용 시<a class="headerlink" href="#ssd_1" title="Permanent link">&para;</a></h6>
 <p>​
 <code>&lt;sr2-redis-data&gt;</code> = <code>&lt;prefix-redis-data&gt;/&lt;user&gt;</code>
 ​
@@ -170,7 +172,7 @@ cluster start 실행 시 아래의 3가지 기능을 수행합니다.
 ​
 ​</p>
 </blockquote>
-<h5 id="redis-process">redis process 생성</h5>
+<h5 id="redis-process">redis process 생성<a class="headerlink" href="#redis-process" title="Permanent link">&para;</a></h5>
 <p>​
 각 master host와 slave host에 redis server를 실행시킵니다.
 ​
@@ -180,7 +182,7 @@ log 저장 경로: <code>&lt;sr2-home&gt;/logs/servers-&lt;time-stamp-%Y%m%d-%H%
 ​
 ​
 ​</p>
-<h4 id="options">options</h4>
+<h4 id="options">options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h4>
 <p>​
 * --profile
 ​
@@ -192,7 +194,7 @@ log 저장 경로: <code>&lt;sr2-home&gt;/logs/servers-&lt;time-stamp-%Y%m%d-%H%
 ​
 ​
 ​</p>
-<h4 id="error">Error</h4>
+<h4 id="error">Error<a class="headerlink" href="#error" title="Permanent link">&para;</a></h4>
 <p>​
 * error code 11
 ​</p>
@@ -248,13 +250,13 @@ redis log를 확인하세요.
 ​
 ​
 ​</p>
-<h3 id="cluster-stop">cluster stop</h3>
+<h3 id="cluster-stop">cluster stop<a class="headerlink" href="#cluster-stop" title="Permanent link">&para;</a></h3>
 <p>​
 각 master host와 slave host의 redis process를 종료합니다. (SIGINT)
 ​
 ​
 ​</p>
-<h5 id="options_1">options</h5>
+<h5 id="options_1">options<a class="headerlink" href="#options_1" title="Permanent link">&para;</a></h5>
 <p>​
 * --force
 ​
@@ -262,13 +264,13 @@ redis log를 확인하세요.
 ​
 ​
 ​</p>
-<h3 id="cluster-create">cluster create</h3>
+<h3 id="cluster-create">cluster create<a class="headerlink" href="#cluster-create" title="Permanent link">&para;</a></h3>
 <p>​
 (준비중)
 ​
 ​
 ​</p>
-<h3 id="cluster-clean">cluster clean</h3>
+<h3 id="cluster-clean">cluster clean<a class="headerlink" href="#cluster-clean" title="Permanent link">&para;</a></h3>
 <p>​
 cluster clean 실행 시 아래의 3가지 기능을 수행합니다.
 ​
@@ -278,25 +280,25 @@ cluster clean 실행 시 아래의 3가지 기능을 수행합니다.
 ​
 ​
 ​</p>
-<h5 id="redis-conf">redis conf 삭제</h5>
+<h5 id="redis-conf">redis conf 삭제<a class="headerlink" href="#redis-conf" title="Permanent link">&para;</a></h5>
 <p>​
 각 master hostd와 slave host에서 <code>&lt;sr2-home&gt;/conf/redis/redis-&lt;port&gt;.conf</code> 를 삭제합니다.
 ​
 ​
 ​</p>
-<h5 id="redis-data">redis data 삭제</h5>
+<h5 id="redis-data">redis data 삭제<a class="headerlink" href="#redis-data" title="Permanent link">&para;</a></h5>
 <p>​
 각 master host와 slave host에서 <code>&lt;sr2-flash-db-path&gt;</code> 와 <code>&lt;sr2-redis-data&gt;/appendonly-&lt;port&gt;.aof</code> 그리고 <code>&lt;sr2-redis-data&gt;/dump-&lt;port&gt;.rdb</code> 파일을 삭제합니다.
 ​
 ​
 ​</p>
-<h6 id="ssd_2">ssd 사용 시</h6>
+<h6 id="ssd_2">ssd 사용 시<a class="headerlink" href="#ssd_2" title="Permanent link">&para;</a></h6>
 <p>​
 <code>&lt;sr2-redis-data&gt;</code> = <code>&lt;prefix-redis-data&gt;&lt;number&gt;/&lt;user&gt;</code>
 ​
 <code>&lt;sr2-flash-db-path&gt;</code> = <code>&lt;prefix-flash-db-path&gt;&lt;number&gt;/&lt;user&gt;/db/db-&lt;port&gt;</code>
 ​</p>
-<h6 id="ssd_3">ssd 미사용 시</h6>
+<h6 id="ssd_3">ssd 미사용 시<a class="headerlink" href="#ssd_3" title="Permanent link">&para;</a></h6>
 <p>​
 <code>&lt;sr2-redis-data&gt;</code> = <code>&lt;prefix-redis-data&gt;/&lt;user&gt;</code>
 ​
@@ -312,7 +314,7 @@ cluster clean 실행 시 아래의 3가지 기능을 수행합니다.
 ​
 ​</p>
 </blockquote>
-<h5 id="options_2">options</h5>
+<h5 id="options_2">options<a class="headerlink" href="#options_2" title="Permanent link">&para;</a></h5>
 <p>​
 * --nodes / --reset / --all
 ​
@@ -328,7 +330,7 @@ cluster clean 실행 시 아래의 3가지 기능을 수행합니다.
 ​
 ​
 ​</p>
-<h3 id="cluster-restart">cluster restart</h3>
+<h3 id="cluster-restart">cluster restart<a class="headerlink" href="#cluster-restart" title="Permanent link">&para;</a></h3>
 <p>​
 cluster를 재시작합니다.
 ​
@@ -336,7 +338,7 @@ cluster stop + cluster start
 ​
 ​
 ​</p>
-<h5 id="options_3">options</h5>
+<h5 id="options_3">options<a class="headerlink" href="#options_3" title="Permanent link">&para;</a></h5>
 <p>​
 * --force-stop
 ​
@@ -364,7 +366,7 @@ cluster stop + cluster start
 ​
 ​
 ​</p>
-<h3 id="cluster-edit">cluster edit</h3>
+<h3 id="cluster-edit">cluster edit<a class="headerlink" href="#cluster-edit" title="Permanent link">&para;</a></h3>
 <p>​
 cluster edit \<target> 형식입니다. target 파일을 에디터로 수정합니다.
 ​
@@ -372,25 +374,25 @@ cluster edit \<target> 형식입니다. target 파일을 에디터로 수정합�
 ​
 ​
 ​</p>
-<h5 id="cluster-edit-main">cluster edit main</h5>
+<h5 id="cluster-edit-main">cluster edit main<a class="headerlink" href="#cluster-edit-main" title="Permanent link">&para;</a></h5>
 <p>​
 <code>&lt;sr2-home&gt;/conf/redis.properties</code> 파일을 에디터로 불러와 수정합니다.
 ​
 ​
 ​</p>
-<h5 id="cluster-edit-template-master">cluster edit template --master</h5>
+<h5 id="cluster-edit-template-master">cluster edit template --master<a class="headerlink" href="#cluster-edit-template-master" title="Permanent link">&para;</a></h5>
 <p>​
 <code>&lt;sr2-home&gt;/conf/redis-master.conf.template</code> 파일을 에디터로 불러와 수정합니다.
 ​
 ​
 ​</p>
-<h5 id="cluster-edit-template-slave">cluster edit template --slave</h5>
+<h5 id="cluster-edit-template-slave">cluster edit template --slave<a class="headerlink" href="#cluster-edit-template-slave" title="Permanent link">&para;</a></h5>
 <p>​
 <code>&lt;sr2-home&gt;/conf/redis-slave.conf.template</code> 파일을 에디터로 불러와 수정합니다.
 ​
 ​
 ​</p>
-<h5 id="cluster-edit-thrift">cluster edit thrift</h5>
+<h5 id="cluster-edit-thrift">cluster edit thrift<a class="headerlink" href="#cluster-edit-thrift" title="Permanent link">&para;</a></h5>
 <p>​
 <code>&lt;sr2-home&gt;/conf/thriftserver.properties</code> 파일을 에디터로 불러와 수정합니다.
 ​
@@ -412,6 +414,8 @@ cluster edit \<target> 형식입니다. target 파일을 에디터로 수정합�
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+    
+      <p>All right reserved, FlashBase Team.</p>
     
   </div>
 
