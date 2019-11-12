@@ -68,9 +68,7 @@
         
             <li><a class="toctree-l3" href="#3-session-configuration-files">3. Session configuration files</a></li>
         
-            <li><a class="toctree-l3" href="#4-install-flashbase">4. Install FlashBase</a></li>
-        
-            <li><a class="toctree-l3" href="#5-start-flashbase">5. Start FlashBase</a></li>
+            <li><a class="toctree-l3" href="#4-install-and-start-flashbase">4. Install and Start FlashBase</a></li>
         
         </ul>
     
@@ -144,7 +142,10 @@ net.core.somaxconn = 65535
 ...
 </code></pre>
 
-<p>Notice: In case of application in runtime, use <code>sudo sysctl -p</code></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In case of application in runtime, use <code>sudo sysctl -p</code></p>
+</div>
 <p>(2) Edit <code>/etc/security/limits.conf</code></p>
 <pre><code class="bash">...
 * soft nofile 262144
@@ -158,7 +159,10 @@ net.core.somaxconn = 65535
 ...
 </code></pre>
 
-<p>Notice: In case of application in runtime, use <code>ulimit -n 65535, ulimit -u 131072</code></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In case of application in runtime, use <code>ulimit -n 65535, ulimit -u 131072</code></p>
+</div>
 <p>(3) Edit <code>/etc/fstab</code></p>
 <p>Remove SWAP Partition (Comment out SWAP partition with using <code>#</code> and reboot)</p>
 <pre><code class="bash">...
@@ -166,7 +170,10 @@ net.core.somaxconn = 65535
 ...
 </code></pre>
 
-<p>Notice: In case of application in runtime, use <code>swapoff -a</code></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In case of application in runtime, use <code>swapoff -a</code></p>
+</div>
 <p>(4) <code>/etc/init.d/disable-transparent-hugepages</code></p>
 <pre><code class="bash">root@fbg01 ~] cat /etc/init.d/disable-transparent-hugepages
 #!/bin/bash
@@ -366,216 +373,8 @@ else
 fi
 </code></pre>
 
-<h2 id="4-install-flashbase">4. Install FlashBase<a class="headerlink" href="#4-install-flashbase" title="Permanent link">&para;</a></h2>
-<p>(1) Generate directory for deploying FlashBase.</p>
-<pre><code class="bash">mkdir ~/deploy
-</code></pre>
-
-<p>(2) Copy FlashBase binary</p>
-<pre><code class="bash">cp ./flashbase.xxx.bin ~/deploy/
-</code></pre>
-
-<p>(3) Copy <code>deploy-flashbase.sh</code></p>
-<pre><code class="bash">cp deploy-flashbase.sh ~/deploy/
-</code></pre>
-
-<p>(4) Edit <code>deploy-flashbase.sh</code></p>
-<pre><code class="bash">1 #nodes=(&quot;flashbase-d01&quot; &quot;flashbase-d02&quot; &quot;flashbase-d03&quot;)
-2 #nodes=(&quot;flashbase-w01&quot; &quot;flashbase-w02&quot; &quot;flashbase-w03&quot; &quot;flashbase-w04&quot; &quot;flashbase-w05&quot; &quot;flashbasew06&quot;)
-3 nodes=(&quot;localhost&quot;)
-4
-5 INSTALLER_PATH=$1
-6
-7 [[ $INSTALLER_PATH == &quot;&quot; ]] &amp;&amp; echo &quot;NO ARGS&quot; &amp;&amp; echo &quot;cmd &lt;path of installer.bin&gt;&quot; &amp;&amp; exit 1
-8 [[ ! -e $INSTALLER_PATH ]] &amp;&amp; echo &quot;NO FILE: $INSTALLER_PATH&quot; &amp;&amp; exit 1
-9
-10 INSTALLER_BIN=$(basename $INSTALLER_PATH)
-11 DATEMIN=`date +%Y%m%d%H%M%S`
-12 TSR2_DIR=~/tsr2
-13 echo &quot;DATEMIN: $DATEMIN&quot;
-14 echo &quot;INSTALLER PATH: $INSTALLER_PATH&quot;
-15 echo &quot;INSTALLER NAME: $INSTALLER_BIN&quot;
-16
-17 for cluster_num in &quot;1&quot;;
-18 do
-19     CLUSTER_DIR=$TSR2_DIR/cluster_${cluster_num}
-20     BACKUP_DIR=&quot;${CLUSTER_DIR}_bak_$DATEMIN&quot;
-21     CONF_BACKUP_DIR=&quot;${CLUSTER_DIR}_conf_bak_$DATEMIN&quot;
-22     SR2_HOME=${CLUSTER_DIR}/tsr2-assembly-1.0.0-SNAPSHOT
-23     SR2_CONF=${SR2_HOME}/conf
-24
-25     echo &quot;======================================================&quot;
-26     echo &quot;DEPLOY CLUSTER $cluster_num&quot;
-27     echo &quot;&quot;
-28     echo &quot;CLUSTER_DIR: $CLUSTER_DIR&quot;
-29     echo &quot;SR2_HOME: $SR2_HOME&quot;
-30     echo &quot;SR2_CONF: $SR2_CONF&quot;
-31     echo &quot;BACKUP_DIR: $BACKUP_DIR&quot;
-32     echo &quot;CONF_BACKUP_DIR: $CONF_BACKUP_DIR&quot;
-33     echo &quot;======================================================&quot;
-34     echo &quot;backup...&quot;
-35     mkdir -p ${CONF_BACKUP_DIR}
-36     cp -rf ${SR2_CONF}/* $CONF_BACKUP_DIR
-37
-38     echo &quot;&quot;
-39
-40     for node in ${nodes[@]};
-41     do
-42         echo &quot;DEPLOY NODE $node&quot;
-43        # ssh $node &quot;mv ${CLUSTER_DIR} ${BACKUP_DIR}&quot;
-44         ssh $node &quot;mkdir -p ${CLUSTER_DIR}&quot;
-45         scp -r $INSTALLER_PATH $node:${CLUSTER_DIR}
-46         ssh $node &quot;PATH=${PATH}:/usr/sbin; ${CLUSTER_DIR}/${INSTALLER_BIN} --full ${CLUSTER_DIR}&quot;
-47         rsync -avr $CONF_BACKUP_DIR/* $node:${SR2_CONF}
-48     done
-49
-50     echo &quot;&quot;
-51 done
-
-</code></pre>
-
-<ul>
-<li>At <code>line 3</code>, add the names of servers that create FlashBase cluster. In case of multiple servers, use <code></code>(whitespace) like <code>line 1</code> or <code>line 2</code>.</li>
-<li>At <code>line 17</code>, type cluster number to deploy.(ex, in case of <code>cluster_1</code>, type <code>1</code>). Like <code>for cluster_num in "1" "2" "3";</code>, serveral clusters can be deployed simultaneously.</li>
-<li>Finally, type <code>./deploy-flashbase.sh [file name]</code> to deploy.</li>
-</ul>
-<pre><code class="bash">./deploy-flashbase.sh ./flashbase.xxx.bin
-</code></pre>
-
-<p>(5) Copy <code>.use_cluster</code></p>
-<pre><code class="bash">cp .use_cluster ~/
-</code></pre>
-
-<p>With <code>.use_cluster</code> like below, cluster number can be changed.</p>
-<pre><code class="bash">source ~/.use_cluster 1
-</code></pre>
-
-<p>If <code>cfc</code> alias is already set in <code>.bashrc</code>, you can use <code>cfc</code>.</p>
-<pre><code class="bash">cfc 1
-</code></pre>
-
-<p>(6) Check cluster number and version information</p>
-<pre><code class="bash">$ which flashbase
-/Users/admin/tsr2cluster_1/tsr2-assembly-1.0.0-SNAPSHOT/sbin/flashbase
-
-$ flashbase version
-Flashbase-1.2.1-SNAPSHOT
-Build Time : Mon, Nov 4, 2019 4:30PM GMT+09:00
-Build Host : fbg01
-Build User : hongchan.roh@sk.com
-Git Branch : master
-Git Commit Id : dbcb9ebd064921306cdfd64fd634424ab7c12af9
-Git Commit Message : Merge pull request #149 in BDFLASH/tsr2-package from feature/BDFLASH-905-slave-psync_offset-outofrange to master
-Git Commit User : sungho2.kim@sk.com
-</code></pre>
-
-<p>(7) Setup the number of redis-server process, replica and the number of disks.</p>
-<pre><code class="bash">matthew@fbg05 cfc 1
-matthew@fbg05 flashbase edit
-</code></pre>
-
-<p>With using <code>flashbase edit</code>, open <code>~/tsr2/cluster_1/tsr2-assembly-1.0.0-SNAPSHOT/conf/redis.properties</code> file.</p>
-<pre><code class="bash">1 #!/bin/bash
-2
-3 ## Master hosts and ports
-4 export SR2_REDIS_MASTER_HOSTS=( &quot;127.0.0.1&quot; )
-5 export SR2_REDIS_MASTER_PORTS=( $(seq 18100 18104) )
-6
-7 ## Slave hosts and ports (optional)
-8 export SR2_REDIS_SLAVE_HOSTS=( &quot;127.0.0.1&quot; )
-9 export SR2_REDIS_SLAVE_PORTS=( $(seq 18600 18604) )
-10
-11 ## only single data directory in redis db and flash db
-12 ## Must exist below variables; 'SR2_REDIS_DATA', 'SR2_REDIS_DB_PATH' and 'SR2_FLASH_DB_PATH'
-13 export SR2_REDIS_DATA=&quot;/sata_ssd/ssd_&quot;
-14 export SR2_REDIS_DB_PATH=&quot;/sata_ssd/ssd_&quot;
-15 export SR2_FLASH_DB_PATH=&quot;/sata_ssd/ssd_&quot;
-16
-17 ## multiple data directory in redis db and flash db
-18 export SSD_COUNT=3
-</code></pre>
-
-<p>At <code>line 4~5</code>, add hosts and ports of master redis-server.(the number of PORTs is the number of master redis-server in a server)</p>
-<p>At <code>line 8~9</code>, add hosts and ports of slave redis-server.(the number of PORTs is the number of slave redis-server in a server)</p>
-<p>At <code>line 13~15</code>, set the path to save data files(aof, rdb, db)</p>
-<p>At <code>line 18</code>, set the count of disks. With this value, FlashBase calculates the storage path of each redis-server</p>
-<p>(8) Setup configuration and features</p>
-<pre><code class="bash">flashbase edit template
-</code></pre>
-
-<p>If <code>flashbase edit template</code> is executed, templates of masters and slaves will be open to modify configurations and features.</p>
-<p>Following is example.</p>
-<ul>
-<li>maxmemory</li>
-</ul>
-<pre><code class="bash"># maxmemory &lt;bytes&gt;
-# maxmemory should be greater than 51mb in TSR2
-maxmemory 200mb
-</code></pre>
-
-<ul>
-<li>flash-db-ttl</li>
-</ul>
-<pre><code class="bash"># for setting ttl value for flash db (default value is 2592000 = 3600 secs * 24 housrs * 30 days)
-flash-db-ttl 2592000
-</code></pre>
-
-<p>These values can be checked and set like bellow.</p>
-<pre><code class="bash">~ flashbase cli
-127.0.0.1:18108&gt; config get maxmemory
-1) &quot;maxmemory&quot;
-2) &quot;209715200&quot;
-127.0.0.1:18108&gt; config set maxmemory 210mb
-OK
-127.0.0.1:18108&gt; config get maxmemory
-1) &quot;maxmemory&quot;
-2) &quot;220200960&quot;
-127.0.0.1:18108&gt; config get flash-db-ttl
-1) &quot;flash-db-ttl&quot;
-2) &quot;2592000&quot;
-127.0.0.1:18108&gt; config get *ttl*
-1) &quot;repl-backlog-ttl&quot;
-2) &quot;3600&quot;
-3) &quot;flash-db-ttl&quot;
-4) &quot;2592000&quot;
-5) &quot;redis-db-flash-db-ttl-gap&quot;
-6) &quot;21600&quot;
-127.0.0.1:18108&gt;
-</code></pre>
-
-<h2 id="5-start-flashbase">5. Start FlashBase<a class="headerlink" href="#5-start-flashbase" title="Permanent link">&para;</a></h2>
-<p>(1) Set cluster number(ex, we will use cluster 1)</p>
-<pre><code class="bash">source ~/.use_cluster 1
-</code></pre>
-
-<p>or</p>
-<pre><code class="bash">cfc 1
-</code></pre>
-
-<p>(2) Stop all redis-server process of cluster 1</p>
-<pre><code class="bash">flashbase stop
-</code></pre>
-
-<p>(3) Remove all data files of cluster 1</p>
-<pre><code class="bash">flashbase clean
-</code></pre>
-
-<p>(4) Type <code>flashbase edit template</code> and set required configurations</p>
-<pre><code class="bash">flashbase edit template
-</code></pre>
-
-<p>(5) restart cluster with initialization</p>
-<pre><code class="bash">flashbase restart --reset --cluster --yes
-</code></pre>
-
-<p>(6) In case of failure</p>
-<p>Move to <code>$SR2_HOME/logs/redis</code> and check log files</p>
-<pre><code class="bash">cd $SR2_HOME/logs/redis
-</code></pre>
-
-<p>If there is no hint about error, try like below.</p>
-<pre><code class="bash">DYLD_LIBRARY_PATH=~/tsr2/cluster_1/tsr2-assembly-1.0.0-SNAPSHOT/lib/native/ ~/tsr2/cluster_1/tsr2-assembly-1.0.0-SNAPSHOT/bin/redis-server ~/tsr2/cluster_1/tsr2-assembly-1.0.0-SNAPSHOT/conf/redis/redis-18101.conf
-</code></pre>
+<h2 id="4-install-and-start-flashbase">4. Install and Start FlashBase<a class="headerlink" href="#4-install-and-start-flashbase" title="Permanent link">&para;</a></h2>
+<p>Use <a href="../command-line-interface/#command-line-interface">Command Line Interface</a> of FlashBase.</p>
               
             </div>
           </div>

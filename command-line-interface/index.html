@@ -67,7 +67,15 @@
     
         <ul>
         
-            <li><a class="toctree-l3" href="#cluster">Cluster 명령어</a></li>
+            <li><a class="toctree-l3" href="#1-cluster-start">1. cluster start</a></li>
+        
+            <li><a class="toctree-l3" href="#2-cluster-stop">2. cluster stop</a></li>
+        
+            <li><a class="toctree-l3" href="#3-cluster-create">3. cluster create</a></li>
+        
+            <li><a class="toctree-l3" href="#4-cluster-clean">4. cluster clean</a></li>
+        
+            <li><a class="toctree-l3" href="#5-cluster-restart">5. cluster restart​</a></li>
         
         </ul>
     
@@ -110,293 +118,99 @@
             <div class="section">
               
                 <h1 id="command-line-interface">Command Line Interface<a class="headerlink" href="#command-line-interface" title="Permanent link">&para;</a></h1>
-<p>Command Line Interface(CLI) 도구에서 사용할 수 있는 명령어를 설명합니다.</p>
-<h2 id="cluster">Cluster 명령어<a class="headerlink" href="#cluster" title="Permanent link">&para;</a></h2>
-<p>FlashBase Cluster를 관리하는 명령어들은 아래와 같습니다.​</p>
+<p>Command Line Interface(CLI) of FlashBase supports not only deploy and start command but also many commands to access and manipulat data in FlashBase.</p>
+<p>​</p>
+<h2 id="1-cluster-start">1. cluster start<a class="headerlink" href="#1-cluster-start" title="Permanent link">&para;</a></h2>
+<h3 id="procedure">Procedure<a class="headerlink" href="#procedure" title="Permanent link">&para;</a></h3>
+<p>(1) Backup logs of the previous master/slave nodes</p>
 <ul>
-<li><a href="#cluster-start">cluster start</a></li>
-<li><a href="#cluster-configure">cluster configure</a></li>
-<li><a href="#cluster-stop">cluster stop</a></li>
-<li><a href="#cluster-clean">cluster clean</a></li>
-<li><a href="#cluster-restart">cluster restart</a>
-​</li>
+<li>All log files of previous master/slave nodes in '${SR2_HOME}<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>/logs/redis/' will be moved to '${SR2_HOME}/logs/redis/backup/'.</li>
 </ul>
-<h3 id="cluster-configure">cluster configure<a class="headerlink" href="#cluster-configure" title="Permanent link">&para;</a></h3>
-<p>​
- <code>redis.properties</code> 정보를 바탕으로 <code>redis-master.conf.template</code>와 <code>redis-slave.conf.template</code> 을 통해 <code>redis-&lt;port&gt;.conf</code> 파일을 각 master host와 slave host의  <code>&lt;sr2-home&gt;/conf/redis</code> 아래에 생성합니다.
-​
-​</p>
-<h3 id="cluster-start">cluster start<a class="headerlink" href="#cluster-start" title="Permanent link">&para;</a></h3>
-<p>​
-cluster start 실행 시 아래의 3가지 기능을 수행합니다.
-​
-* 기존 log 백업
-* 필요 directory 생성
-* redis process 실행
-​
-​
-​</p>
-<h5 id="log">기존 log 백업<a class="headerlink" href="#log" title="Permanent link">&para;</a></h5>
-<p>​
-각 master host와 slave host의 <code>&lt;sr2-home&gt;/logs/backup/&lt;timestamp-%Y%m%d-%H%M%S&gt;</code> 에 log 파일을 백업합니다.
-​
-​
-​</p>
-<h5 id="directory">필요 directory 생성<a class="headerlink" href="#directory" title="Permanent link">&para;</a></h5>
-<p>​
-각 master host와 slave host에 <code>&lt;sr2-redis-data&gt;</code>, <code>&lt;sr2-flash-db-path&gt;</code> 디렉토리를 생성합니다.
-​
-이미 존재하는 경우 건너뜁니다.
-​
-​
-​</p>
-<h6 id="ssd">ssd 사용 시<a class="headerlink" href="#ssd" title="Permanent link">&para;</a></h6>
-<p>​
-<code>&lt;sr2-redis-data&gt;</code> = <code>&lt;prefix-redis-data&gt;&lt;number&gt;/&lt;user&gt;</code>
-​
-<code>&lt;sr2-flash-db-path&gt;</code> = <code>&lt;prefix-flash-db-path&gt;&lt;number&gt;/&lt;user&gt;/db/db-&lt;port&gt;</code>
-​</p>
-<h6 id="ssd_1">ssd 미사용 시<a class="headerlink" href="#ssd_1" title="Permanent link">&para;</a></h6>
-<p>​
-<code>&lt;sr2-redis-data&gt;</code> = <code>&lt;prefix-redis-data&gt;/&lt;user&gt;</code>
-​
-<code>&lt;sr2-flash-db-path&gt;</code> = <code>&lt;prefix-flash-db-path&gt;/&lt;user&gt;/db/db-&lt;port&gt;</code>
-​
-​
-​</p>
-<blockquote>
-<p><code>&lt;prefix-redis-data&gt;</code> = <code>SR2_REDIS_DATA</code> of <code>redis.properties</code></p>
-<p><code>&lt;prefix-flash-db-path&gt;</code> = <code>SR2_FLASH_DB_PATH</code> of <code>redis.properties</code></p>
-<p><code>&lt;user&gt;</code> = user name of OS ($USER)
-​
-​
-​</p>
-</blockquote>
-<h5 id="redis-process">redis process 생성<a class="headerlink" href="#redis-process" title="Permanent link">&para;</a></h5>
-<p>​
-각 master host와 slave host에 redis server를 실행시킵니다.
-​
-적용할 conf 파일 경로: <code>&lt;sr2-home&gt;/conf/redis/redis-&lt;port&gt;.conf</code>
-​
-log 저장 경로: <code>&lt;sr2-home&gt;/logs/servers-&lt;time-stamp-%Y%m%d-%H%M&gt;-&lt;port&gt;.log</code>
-​
-​
-​</p>
-<h4 id="options">options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h4>
-<p>​
-* --profile
-​
-  redis server 실행 시 아래의 환경변수가 추가되어 실행됩니다.
-​
-  * <code>MALLOC_CONF=prof_leak:true,lg_prof_sample:0,prof_final:true</code>
-​
-  * <code>LD_PRELOAD=$SR2_REDIS_LIB/native/libjemalloc.so</code>
-​
-​
-​</p>
-<h4 id="error">Error<a class="headerlink" href="#error" title="Permanent link">&para;</a></h4>
-<p>​
-* error code 11
-​</p>
-<pre><code>$ cluster start
+<p>(2) Generate directories to save data</p>
+<ul>
+<li>Save aof and rdb files of redis-server and RocksDB files in '${SR2_REDIS_DATA}'</li>
+</ul>
+<p>(3) Start redis-server process</p>
+<ul>
+<li>Start master and slave redis-server with '${SR2_HOME}/conf/redis/redis-{port}.conf' file</li>
+<li>Log files will be saved in '${SR2_HOME}/logs/redis/'</li>
+</ul>
+<h3 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h3>
+<p>(1) ErrorCode 11</p>
+<p>Redis-server(master) process with same port is already running. To resolve this error, use 'cluster stop' or 'kill {pid of the process}'.</p>
+<pre><code class="bash">$ cluster start
+...
 ...
 [ErrorCode 11] Fail to start... Must be checked running MASTER redis processes!
 We estimate that redis process is &lt;alive-redis-count&gt;.
 </code></pre>
 
-<p>​
-사용하려고 하는 master port에 이미 redis process가 실행중인 경우입니다.
-​
-cluster stop 혹은 kill 등을 통해 해당 port에 실행중인 redis를 종료시켜야 합니다.
-​
-​
-​
-* error code 12
-​</p>
-<pre><code>$ cluster start
+<p>(2) ErrorCode 12</p>
+<p>Redis-server(slave) process with same port is already running. To resolve this error, use 'cluster stop' or 'kill {pid of the process}'.</p>
+<pre><code class="bash">$ cluster start
 ...
 [ErrorCode 12] Fail to start... Must be checked running SLAVE redis processes!
 We estimate that redis process is &lt;alive-redis-count&gt;.
 </code></pre>
 
-<p>​
-사용하려고 하는 slave port에 이미 redis process가 실행중인 경우입니다.
-​
-cluster stop 혹은 kill 등을 통해 해당 port에 실행중인 redis를 종료시켜야 합니다.
-​
-​
-​
-* conf file not exist
-​</p>
-<pre><code>$ cluster start
+<p>(3) Conf file not exist</p>
+<p>Conf file is not found. To resove this error, use 'cluster configure' and then 'cluster start'.
+cluster configure 명령어를 실행시킨 후 cluster start를 진행하세요.</p>
+<pre><code class="bash">$ cluster start
 ...
-FileNotExistError: '&lt;sr2-home&gt;/conf/redis/redis-&lt;port&gt;.conf'
+FileNotExistError: ${SR2_HOME}/conf/redis/redis-{port}.conf
 </code></pre>
 
-<p>​
-cluster configure 명령어를 실행시킨 후 cluster start를 진행하세요.
+<p>(4) max try error
 ​
-​
-​
-* max try error
-​</p>
-<pre><code>$ cluster start
+For detail information, please check log files.</p>
+<pre><code class="bash">$ cluster start
 ...
 max try error
 </code></pre>
 
+<h2 id="2-cluster-stop">2. cluster stop<a class="headerlink" href="#2-cluster-stop" title="Permanent link">&para;</a></h2>
+<p>​Gracefully kill all redis-servers(master/slave) with SIGINT
+​​</p>
+<h3 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h3>
+<p>(1) Force to kill all redis-servers(master/slave) with SIGKILL</p>
+<pre><code class="bash">--force
+</code></pre>
+
+<h2 id="3-cluster-create">3. cluster create<a class="headerlink" href="#3-cluster-create" title="Permanent link">&para;</a></h2>
+<p>To-Do
+​​</p>
+<h2 id="4-cluster-clean">4. cluster clean<a class="headerlink" href="#4-cluster-clean" title="Permanent link">&para;</a></h2>
+<h3 id="procedure_1">Procedure​<a class="headerlink" href="#procedure_1" title="Permanent link">&para;</a></h3>
+<p>(1) Remove conf files for redis-server</p>
+<p>(2) Remove all data(aof, rdb, RocksDB) of FlashBase</p>
+<h2 id="5-cluster-restart">5. cluster restart​<a class="headerlink" href="#5-cluster-restart" title="Permanent link">&para;</a></h2>
+<p>Process 'cluster stop' and then 'cluster start'.
+​​
+​</p>
+<h3 id="options_1">Options<a class="headerlink" href="#options_1" title="Permanent link">&para;</a></h3>
+<p>(1) Force to kill all redis-servers(master/slave) with SIGKILL and then start again.</p>
+<pre><code class="bash">--force-stop
+</code></pre>
+
+<p>(2) Remove all data(aof, rdb, RocksDB, conf files) before start again.</p>
+<pre><code class="bash">--reset
+</code></pre>
+
+<p>(3) Process 'cluster create'. This command should be called with '--reset'.</p>
+<pre><code class="bash">--cluster
+</code></pre>
+
 <p>​
-redis log를 확인하세요.
-​
-​
 ​</p>
-<h3 id="cluster-stop">cluster stop<a class="headerlink" href="#cluster-stop" title="Permanent link">&para;</a></h3>
-<p>​
-각 master host와 slave host의 redis process를 종료합니다. (SIGINT)
-​
-​
-​</p>
-<h5 id="options_1">options<a class="headerlink" href="#options_1" title="Permanent link">&para;</a></h5>
-<p>​
-* --force
-​
-  redis process를 강제로 종료합니다. (SIGKILL)
-​
-​
-​</p>
-<h3 id="cluster-create">cluster create<a class="headerlink" href="#cluster-create" title="Permanent link">&para;</a></h3>
-<p>​
-(준비중)
-​
-​
-​</p>
-<h3 id="cluster-clean">cluster clean<a class="headerlink" href="#cluster-clean" title="Permanent link">&para;</a></h3>
-<p>​
-cluster clean 실행 시 아래의 3가지 기능을 수행합니다.
-​
-* redis conf 삭제
-​
-* redis data 삭제
-​
-​
-​</p>
-<h5 id="redis-conf">redis conf 삭제<a class="headerlink" href="#redis-conf" title="Permanent link">&para;</a></h5>
-<p>​
-각 master hostd와 slave host에서 <code>&lt;sr2-home&gt;/conf/redis/redis-&lt;port&gt;.conf</code> 를 삭제합니다.
-​
-​
-​</p>
-<h5 id="redis-data">redis data 삭제<a class="headerlink" href="#redis-data" title="Permanent link">&para;</a></h5>
-<p>​
-각 master host와 slave host에서 <code>&lt;sr2-flash-db-path&gt;</code> 와 <code>&lt;sr2-redis-data&gt;/appendonly-&lt;port&gt;.aof</code> 그리고 <code>&lt;sr2-redis-data&gt;/dump-&lt;port&gt;.rdb</code> 파일을 삭제합니다.
-​
-​
-​</p>
-<h6 id="ssd_2">ssd 사용 시<a class="headerlink" href="#ssd_2" title="Permanent link">&para;</a></h6>
-<p>​
-<code>&lt;sr2-redis-data&gt;</code> = <code>&lt;prefix-redis-data&gt;&lt;number&gt;/&lt;user&gt;</code>
-​
-<code>&lt;sr2-flash-db-path&gt;</code> = <code>&lt;prefix-flash-db-path&gt;&lt;number&gt;/&lt;user&gt;/db/db-&lt;port&gt;</code>
-​</p>
-<h6 id="ssd_3">ssd 미사용 시<a class="headerlink" href="#ssd_3" title="Permanent link">&para;</a></h6>
-<p>​
-<code>&lt;sr2-redis-data&gt;</code> = <code>&lt;prefix-redis-data&gt;/&lt;user&gt;</code>
-​
-<code>&lt;sr2-flash-db-path&gt;</code> = <code>&lt;prefix-flash-db-path&gt;/&lt;user&gt;/db/db-&lt;port&gt;</code>
-​
-​
-​</p>
-<blockquote>
-<p><code>&lt;prefix-redis-data&gt;</code> = <code>SR2_REDIS_DATA</code> of <code>redis.properties</code></p>
-<p><code>&lt;prefix-flash-db-path&gt;</code> = <code>SR2_FLASH_DB_PATH</code> of <code>redis.properties</code></p>
-<p><code>&lt;user&gt;</code> = user name of OS ($USER)
-​
-​
-​</p>
-</blockquote>
-<h5 id="options_2">options<a class="headerlink" href="#options_2" title="Permanent link">&para;</a></h5>
-<p>​
-* --nodes / --reset / --all
-​
-  redis node conf 파일도 같이 삭제합니다.
-​
-* --logs
-​
-  redis conf 삭제와 redis data 삭제는 진행하지 않습니다.
-​
-  각 master host에서 <code>&lt;sr2-home&gt;/logs/*.log</code> 파일을 삭제합니다.
-​
-​
-​
-​
-​</p>
-<h3 id="cluster-restart">cluster restart<a class="headerlink" href="#cluster-restart" title="Permanent link">&para;</a></h3>
-<p>​
-cluster를 재시작합니다.
-​
-cluster stop + cluster start
-​
-​
-​</p>
-<h5 id="options_3">options<a class="headerlink" href="#options_3" title="Permanent link">&para;</a></h5>
-<p>​
-* --force-stop
-​
-  redis process 종료 시 강제로 종료시킵니다. (SIGKILL)
-​
-  cluster stop --force + cluster start
-​
-* --profile
-​
-  cluster start 시 profile 옵션을 추가합니다.
-​
-  cluster stop + cluster start --profile
-​
-* --reset
-​
-  redis process 종료 후 cluster 초기화를 하고 redis process를 실행시킵니다.
-​
-  cluster stop + cluster clean --reset + cluster start
-​
-* --cluster
-​
-  --reset option 사용 시 사용할 수 있습니다. cluster 재시작 이후 cluster create를 진행합니다.
-​
-  cluster stop + cluster clean --reset + cluster start + cluster create
-​
-​
-​</p>
-<h3 id="cluster-edit">cluster edit<a class="headerlink" href="#cluster-edit" title="Permanent link">&para;</a></h3>
-<p>​
-cluster edit \<target> 형식입니다. target 파일을 에디터로 수정합니다.
-​
-사용가능한 target은 main, template, thrift가 있으며 default value는 main입니다.
-​
-​
-​</p>
-<h5 id="cluster-edit-main">cluster edit main<a class="headerlink" href="#cluster-edit-main" title="Permanent link">&para;</a></h5>
-<p>​
-<code>&lt;sr2-home&gt;/conf/redis.properties</code> 파일을 에디터로 불러와 수정합니다.
-​
-​
-​</p>
-<h5 id="cluster-edit-template-master">cluster edit template --master<a class="headerlink" href="#cluster-edit-template-master" title="Permanent link">&para;</a></h5>
-<p>​
-<code>&lt;sr2-home&gt;/conf/redis-master.conf.template</code> 파일을 에디터로 불러와 수정합니다.
-​
-​
-​</p>
-<h5 id="cluster-edit-template-slave">cluster edit template --slave<a class="headerlink" href="#cluster-edit-template-slave" title="Permanent link">&para;</a></h5>
-<p>​
-<code>&lt;sr2-home&gt;/conf/redis-slave.conf.template</code> 파일을 에디터로 불러와 수정합니다.
-​
-​
-​</p>
-<h5 id="cluster-edit-thrift">cluster edit thrift<a class="headerlink" href="#cluster-edit-thrift" title="Permanent link">&para;</a></h5>
-<p>​
-<code>&lt;sr2-home&gt;/conf/thriftserver.properties</code> 파일을 에디터로 불러와 수정합니다.
-​
-​</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>If user types 'cfc 1', ${SR2_HOME} will be '~/tsr2/cluster_1/tsr2-assembly-1.0.0-SNAPSHOT'.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
               
             </div>
           </div>
