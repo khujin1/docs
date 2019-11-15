@@ -8,7 +8,7 @@
   
   <meta name="author" content="FlashBase Team">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Command Line Interface - FlashBase Docs</title>
+  <title>Commands - FlashBase Docs</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Command Line Interface";
+    var mkdocs_page_name = "Commands";
     var mkdocs_page_input_path = "command-line-interface.md";
     var mkdocs_page_url = "/docs/command-line-interface/";
   </script>
@@ -26,6 +26,16 @@
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-152587413-1', 'mnms.github.io/docs');
+      ga('send', 'pageview');
+  </script>
   
 </head>
 
@@ -55,31 +65,75 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../get-started/">Get Started</a>
+    <span class="caption-text">Get Started</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../get-started1/">Automated Installation (recommanded)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../get-started2/">Manual Installation</a>
+                </li>
+    </ul>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">Command Line Interface</a>
+    <span class="caption-text">FBCTL</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../run-and-deploy-fbctl/">Install and Upgrade</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Commands</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#command-line-interface">Command Line Interface</a></li>
+    <li class="toctree-l3"><a href="#1-cluster-start">1. cluster start</a></li>
+    
+
+    <li class="toctree-l3"><a href="#2-cluster-stop">2. cluster stop</a></li>
+    
+
+    <li class="toctree-l3"><a href="#3-cluster-create">3. cluster create</a></li>
+    
+
+    <li class="toctree-l3"><a href="#4-cluster-clean">4. cluster clean</a></li>
+    
+
+    <li class="toctree-l3"><a href="#5-cluster-restart">5. cluster restart​</a></li>
     
         <ul>
         
-            <li><a class="toctree-l3" href="#1-cluster-start">1. cluster start</a></li>
-        
-            <li><a class="toctree-l3" href="#2-cluster-stop">2. cluster stop</a></li>
-        
-            <li><a class="toctree-l3" href="#3-cluster-create">3. cluster create</a></li>
-        
-            <li><a class="toctree-l3" href="#4-cluster-clean">4. cluster clean</a></li>
-        
-            <li><a class="toctree-l3" href="#5-cluster-restart">5. cluster restart​</a></li>
+            <li><a class="toctree-l4" href="#6-check-cluster-infos">6. Check Cluster Infos</a></li>
         
         </ul>
     
 
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../data-ingestion-and-querying/">Data Ingestion and Querying</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Support</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../FAQ/">FAQ</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../eula/">EULA</a>
+                </li>
     </ul>
 	    </li>
           
@@ -104,8 +158,12 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>FBCTL &raquo;</li>
+        
+      
     
-    <li>Command Line Interface</li>
+    <li>Commands</li>
     <li class="wy-breadcrumbs-aside">
       
         <a href="https://github.com/mnms/docs/edit/master/docs/command-line-interface.md"> Edit on source repository</a>
@@ -117,11 +175,8 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="command-line-interface">Command Line Interface<a class="headerlink" href="#command-line-interface" title="Permanent link">&para;</a></h1>
-<p>Command Line Interface(CLI) of FlashBase supports not only deploy and start command but also many commands to access and manipulat data in FlashBase.</p>
-<p>​</p>
-<h2 id="1-cluster-start">1. cluster start<a class="headerlink" href="#1-cluster-start" title="Permanent link">&para;</a></h2>
-<h3 id="procedure">Procedure<a class="headerlink" href="#procedure" title="Permanent link">&para;</a></h3>
+                <h1 id="1-cluster-start">1. cluster start<a class="headerlink" href="#1-cluster-start" title="Permanent link">&para;</a></h1>
+<p><strong>Procedure</strong></p>
 <p>(1) Backup logs of the previous master/slave nodes</p>
 <ul>
 <li>All log files of previous master/slave nodes in '${SR2_HOME}<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>/logs/redis/' will be moved to '${SR2_HOME}/logs/redis/backup/'.</li>
@@ -135,7 +190,36 @@
 <li>Start master and slave redis-server with '${SR2_HOME}/conf/redis/redis-{port}.conf' file</li>
 <li>Log files will be saved in '${SR2_HOME}/logs/redis/'</li>
 </ul>
-<h3 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h3>
+<pre><code class="bash">&gt; cluster start
+Check status of hosts ...
+OK
+Check cluster exist...
+
+...
+
+OK
+Backup redis master log in each MASTER hosts...
+
+...
+
+Starting master nodes : nodeA : 18100 ...
+
+...
+
+Starting slave nodes : nodeA : 18150|18151 ...
+
+...
+
+Wait until all redis process up...
+cur: 0 / total: 12
+
+...
+
+cur: 12 / total: 12
+Complete all redis process up.
+</code></pre>
+
+<p><strong>Error Handling</strong></p>
 <p>(1) ErrorCode 11</p>
 <p>Redis-server(master) process with same port is already running. To resolve this error, use 'cluster stop' or 'kill {pid of the process}'.</p>
 <pre><code class="bash">$ cluster start
@@ -169,26 +253,51 @@ For detail information, please check log files.</p>
 max try error
 </code></pre>
 
-<h2 id="2-cluster-stop">2. cluster stop<a class="headerlink" href="#2-cluster-stop" title="Permanent link">&para;</a></h2>
+<h1 id="2-cluster-stop">2. cluster stop<a class="headerlink" href="#2-cluster-stop" title="Permanent link">&para;</a></h1>
 <p>​Gracefully kill all redis-servers(master/slave) with SIGINT
-​​</p>
-<h3 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h3>
+​​
+<strong>Options</strong></p>
 <p>(1) Force to kill all redis-servers(master/slave) with SIGKILL</p>
 <pre><code class="bash">--force
 </code></pre>
 
-<h2 id="3-cluster-create">3. cluster create<a class="headerlink" href="#3-cluster-create" title="Permanent link">&para;</a></h2>
-<p>To-Do
-​​</p>
-<h2 id="4-cluster-clean">4. cluster clean<a class="headerlink" href="#4-cluster-clean" title="Permanent link">&para;</a></h2>
-<h3 id="procedure_1">Procedure​<a class="headerlink" href="#procedure_1" title="Permanent link">&para;</a></h3>
+<h1 id="3-cluster-create">3. cluster create<a class="headerlink" href="#3-cluster-create" title="Permanent link">&para;</a></h1>
+<p>After checking information of the cluster, create cluster of LightningDB.</p>
+<pre><code class="bash">&gt; cluster create
+&gt;&gt;&gt; Creating cluster
++-------+-------+--------+
+| HOST  | PORT  | TYPE   |
++-------+-------+--------+
+| nodeA | 18100 | MASTER |
+| nodeB | 18100 | MASTER |
+|   .       .       .    |
+|   .       .       .    |
+|   .       .       .    |
+| nodeD | 18150 | SLAVE  |
+| nodeD | 18151 | SLAVE  |
++-------+-------+--------+
+Do you want to proceed with the create according to the above information? (y/n)
+y
+replicas: 2.00
+replicate [M] nodeA 18100 - [S] nodeA 18150
+replicate [M] nodeD 18100 - [S] nodeD 18151
+1 / 8 meet complete.
+2 / 8 meet complete.
+
+...
+
+8 / 8 meet complete.
+create cluster complete.
+</code></pre>
+
+<p>​​</p>
+<h1 id="4-cluster-clean">4. cluster clean<a class="headerlink" href="#4-cluster-clean" title="Permanent link">&para;</a></h1>
+<p><strong>Procedure​</strong></p>
 <p>(1) Remove conf files for redis-server</p>
-<p>(2) Remove all data(aof, rdb, RocksDB) of FlashBase</p>
-<h2 id="5-cluster-restart">5. cluster restart​<a class="headerlink" href="#5-cluster-restart" title="Permanent link">&para;</a></h2>
-<p>Process 'cluster stop' and then 'cluster start'.
-​​
-​</p>
-<h3 id="options_1">Options<a class="headerlink" href="#options_1" title="Permanent link">&para;</a></h3>
+<p>(2) Remove all data(aof, rdb, RocksDB) of LightningDB</p>
+<h1 id="5-cluster-restart">5. cluster restart​<a class="headerlink" href="#5-cluster-restart" title="Permanent link">&para;</a></h1>
+<p>Process 'cluster stop' and then 'cluster start'.​​</p>
+<p><strong>Options</strong></p>
 <p>(1) Force to kill all redis-servers(master/slave) with SIGKILL and then start again.</p>
 <pre><code class="bash">--force-stop
 </code></pre>
@@ -201,6 +310,19 @@ max try error
 <pre><code class="bash">--cluster
 </code></pre>
 
+<h2 id="6-check-cluster-infos">6. Check Cluster Infos<a class="headerlink" href="#6-check-cluster-infos" title="Permanent link">&para;</a></h2>
+<pre><code class="bash">cli ping --all
+</code></pre>
+
+<p>Send PING to all redis-server processes and check if all of them are healthy.</p>
+<pre><code class="bash">cli cluster info
+</code></pre>
+
+<p>Check information of the cluster.</p>
+<pre><code class="bash">cli cluster nodes
+</code></pre>
+
+<p>List up all redis-server processes that compose the cluster.</p>
 <p>​
 ​</p>
 <div class="footnote">
@@ -218,8 +340,10 @@ max try error
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../data-ingestion-and-querying/" class="btn btn-neutral float-right" title="Data Ingestion and Querying">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../get-started/" class="btn btn-neutral" title="Get Started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="../run-and-deploy-fbctl/" class="btn btn-neutral" title="Install and Upgrade"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -247,8 +371,10 @@ max try error
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../get-started/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../run-and-deploy-fbctl/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../data-ingestion-and-querying/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

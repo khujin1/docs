@@ -6,12 +6,37 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://mnms.github.io/docs/get-started/</loc>
+     <loc>https://mnms.github.io/docs/get-started1/</loc>
+     <lastmod>2019-11-15</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://mnms.github.io/docs/get-started2/</loc>
+     <lastmod>2019-11-15</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://mnms.github.io/docs/run-and-deploy-fbctl/</loc>
      <lastmod>2019-11-15</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://mnms.github.io/docs/command-line-interface/</loc>
+     <lastmod>2019-11-15</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://mnms.github.io/docs/data-ingestion-and-querying/</loc>
+     <lastmod>2019-11-15</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://mnms.github.io/docs/FAQ/</loc>
+     <lastmod>2019-11-15</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://mnms.github.io/docs/eula/</loc>
      <lastmod>2019-11-15</lastmod>
      <changefreq>daily</changefreq>
     </url>

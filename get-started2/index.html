@@ -8,7 +8,7 @@
   
   <meta name="author" content="FlashBase Team">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Get Started - FlashBase Docs</title>
+  <title>Manual Installation - FlashBase Docs</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,15 +17,25 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Get Started";
-    var mkdocs_page_input_path = "get-started.md";
-    var mkdocs_page_url = "/docs/get-started/";
+    var mkdocs_page_name = "Manual Installation";
+    var mkdocs_page_input_path = "get-started2.md";
+    var mkdocs_page_url = "/docs/get-started2/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-152587413-1', 'mnms.github.io/docs');
+      ga('send', 'pageview');
+  </script>
   
 </head>
 
@@ -53,32 +63,69 @@
     <a class="" href="..">Introduction</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">Get Started</a>
+    <span class="caption-text">Get Started</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../get-started1/">Automated Installation (recommanded)</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Manual Installation</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#get-started-with-flashbase">Get Started with FlashBase</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#1-optimizing-system-parameters">1. Optimizing System Parameters</a></li>
-        
-            <li><a class="toctree-l3" href="#2-setup-prerequisites">2. Setup Prerequisites</a></li>
-        
-            <li><a class="toctree-l3" href="#3-session-configuration-files">3. Session configuration files</a></li>
-        
-            <li><a class="toctree-l3" href="#4-install-and-start-flashbase">4. Install and Start FlashBase</a></li>
-        
-        </ul>
+    <li class="toctree-l3"><a href="#1-optimizing-system-parameters">1. Optimizing System Parameters</a></li>
     
 
+    <li class="toctree-l3"><a href="#2-setup-prerequisites">2. Setup Prerequisites</a></li>
+    
+
+    <li class="toctree-l3"><a href="#3-session-configuration-files">3. Session configuration files</a></li>
+    
+
+    <li class="toctree-l3"><a href="#4-install-and-start-lightningdb">4. Install and Start LightningDB</a></li>
+    
+
+    </ul>
+                </li>
     </ul>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="../command-line-interface/">Command Line Interface</a>
+    <span class="caption-text">FBCTL</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../run-and-deploy-fbctl/">Install and Upgrade</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../command-line-interface/">Commands</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../data-ingestion-and-querying/">Data Ingestion and Querying</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Support</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../FAQ/">FAQ</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../eula/">EULA</a>
+                </li>
+    </ul>
 	    </li>
           
         </ul>
@@ -102,11 +149,15 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>Get Started &raquo;</li>
+        
+      
     
-    <li>Get Started</li>
+    <li>Manual Installation</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/mnms/docs/edit/master/docs/get-started.md"> Edit on source repository</a>
+        <a href="https://github.com/mnms/docs/edit/master/docs/get-started2.md"> Edit on source repository</a>
       
     </li>
   </ul>
@@ -115,17 +166,11 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="get-started-with-flashbase">Get Started with FlashBase<a class="headerlink" href="#get-started-with-flashbase" title="Permanent link">&para;</a></h1>
-<p>In <code>./scripts</code>, you can find all files that are used in this document .</p>
-<pre><code class="bash">-rw-r--r--  1 admin  SDomain Users   701B 11  5 10:07 .use_cluster
--rw-r--r--@ 1 admin  Domain Users   488B 11  5 10:08 ddl_fb_test_101.sql
--rwxr-xr-x@ 1 admin  Domain Users   1.7K 11  5 10:07 deploy-flashbase.sh
--rw-r--r--@ 1 admin  Domain Users   155B 11  5 10:08 test.json
--rw-r--r--@ 1 admin  Domain Users    17K 11  5 10:08 test_data.csv
-</code></pre>
-
-<h2 id="1-optimizing-system-parameters">1. Optimizing System Parameters<a class="headerlink" href="#1-optimizing-system-parameters" title="Permanent link">&para;</a></h2>
-<h3 id="system-parameters">System Parameters<a class="headerlink" href="#system-parameters" title="Permanent link">&para;</a></h3>
+                <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This page guides how to start LightningDB on CentOS manually. In case of using <strong>AWS EC2 Instance</strong>, please use <a href="../get-started1/">1. Automated Installation (recommanded)</a></p>
+</div>
+<h1 id="1-optimizing-system-parameters">1. Optimizing System Parameters<a class="headerlink" href="#1-optimizing-system-parameters" title="Permanent link">&para;</a></h1>
 <p>(1) Edit <code>/etc/sysctl.conf</code> like following</p>
 <pre><code class="bash">...
 vm.swappiness = 0
@@ -222,8 +267,7 @@ esac
 [root@fbg01 ~] chkconfig --add disable-transparent-hugepages
 </code></pre>
 
-<h2 id="2-setup-prerequisites">2. Setup Prerequisites<a class="headerlink" href="#2-setup-prerequisites" title="Permanent link">&para;</a></h2>
-<h3 id="install-packages">Install Packages<a class="headerlink" href="#install-packages" title="Permanent link">&para;</a></h3>
+<h1 id="2-setup-prerequisites">2. Setup Prerequisites<a class="headerlink" href="#2-setup-prerequisites" title="Permanent link">&para;</a></h1>
 <ul>
 <li>
 <p>bash, unzip, ssh</p>
@@ -253,7 +297,7 @@ esac
 <ul>
 <li>Exchange SSH Key</li>
 </ul>
-<p>For all servers that FlashBase will be deployed, SSH key should be exchanged.</p>
+<p>For all servers that LightningDB will be deployed, SSH key should be exchanged.</p>
 <pre><code class="bash">ssh-keygen -t rsa
 chmod 0600 ~/.ssh/authorized_keys
 cat .ssh/id_rsa.pub | ssh {server name} &quot;cat &gt;&gt; .ssh/authorized_keys&quot;
@@ -317,7 +361,7 @@ source /opt/intel/mkl/bin/mklvars.sh intel64
 <p>ntp: For clock synchronization between servers over packet-switched, variable-latency data networks.</p>
 </li>
 </ul>
-<h2 id="3-session-configuration-files">3. Session configuration files<a class="headerlink" href="#3-session-configuration-files" title="Permanent link">&para;</a></h2>
+<h1 id="3-session-configuration-files">3. Session configuration files<a class="headerlink" href="#3-session-configuration-files" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Edit <code>~/.bashrc</code></li>
 </ul>
@@ -343,38 +387,13 @@ export PATH SPARK_HOME HADOOP_HOME HADOOP_CONF_DIR YARN_CONF_DIR
 alias cfc='source ~/.use_cluster'
 </code></pre>
 
-<ul>
-<li>Add <code>~/.use_cluster</code></li>
-</ul>
-<p>This script helps to change the path of FlasBase Cluster.</p>
-<pre><code class="bash">#!/bin/bash
-
-## set cluster-#{NUM} path
-export PATH=&quot;/bin/:/sbin/:/usr/local/bin/:/usr/local/sbin&quot;
-export SR2_HOME=${HOME}/tsr2/cluster_$1/tsr2-assembly-1.0.0-SNAPSHOT
-
-source ${HOME}/.bash_profile
-
-echo $PATH | grep ${SR2_HOME} &gt; /dev/null
-RET=$?
-if [[ $RET -eq 1 ]]; then
-    PATH=$PATH:$SR2_HOME/bin:$SR2_HOME/sbin
-fi
-
-## source command auto-complate
-source $SR2_HOME/sbin/tsr2-helper
-
-if [ &quot;$#&quot; -le &quot;1&quot; ]; then
-    return 0
-else
-    shift
-    &quot;$@&quot;
-    return $?
-fi
+<h1 id="4-install-and-start-lightningdb">4. Install and Start LightningDB<a class="headerlink" href="#4-install-and-start-lightningdb" title="Permanent link">&para;</a></h1>
+<p>With <strong>fbctl</strong> provided by LightningDB, user can deploy and use LightningDB.</p>
+<p>Install <strong>fbctl</strong> with following command.</p>
+<pre><code class="bash">$ pip insatll fbctl
 </code></pre>
 
-<h2 id="4-install-and-start-flashbase">4. Install and Start FlashBase<a class="headerlink" href="#4-install-and-start-flashbase" title="Permanent link">&para;</a></h2>
-<p>Use <a href="../command-line-interface/#command-line-interface">Command Line Interface</a> of FlashBase.</p>
+<p>After installation is completed, start <strong>fbctl</strong> with <a href="../command-line-interface/#command-line-interface">Commands</a></p>
               
             </div>
           </div>
@@ -382,10 +401,10 @@ fi
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../command-line-interface/" class="btn btn-neutral float-right" title="Command Line Interface">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../run-and-deploy-fbctl/" class="btn btn-neutral float-right" title="Install and Upgrade">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href=".." class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../get-started1/" class="btn btn-neutral" title="Automated Installation (recommanded)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -413,10 +432,10 @@ fi
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../get-started1/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../command-line-interface/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../run-and-deploy-fbctl/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
