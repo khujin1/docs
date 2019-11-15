@@ -53,13 +53,7 @@
     <a class="current" href=".">Introduction</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#1-lightningdb-is">1. LightningDB is</a></li>
-    
-
-    <li class="toctree-l2"><a href="#2-architecture">2. Architecture</a></li>
-    
-
-    <li class="toctree-l2"><a href="#3-features">3. Features</a></li>
+    <li class="toctree-l2"><a href="#welcome-to-flashbase-docs">Welcome to FlashBase Docs</a></li>
     
 
     </ul>
@@ -67,52 +61,12 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">Get Started</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="get-started1/">Automated Installation (recommanded)</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="get-started2/">Manual Installation</a>
-                </li>
-    </ul>
+    <a class="" href="get-started/">Get Started</a>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">FBCTL</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="run-and-deploy-fbctl/">Install and Upgrade</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="command-line-interface/">Commands</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="data-ingestion-and-querying/">Data Ingestion and Querying</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Support</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="FAQ/">FAQ</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="eula/">EULA</a>
-                </li>
-    </ul>
+    <a class="" href="command-line-interface/">Command Line Interface</a>
 	    </li>
           
         </ul>
@@ -149,29 +103,9 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="1-lightningdb-is">1. LightningDB is<a class="headerlink" href="#1-lightningdb-is" title="Permanent link">&para;</a></h1>
-<p>A distributed in-memory DBMS for real-time big data analytics</p>
-<ul>
-<li>Realtime ingestion and analytics for large scale data</li>
-<li>Advantages in random small data accesses based on DRAM/SSD resident KV Store</li>
-<li>Optimized for time series data and geospatial data</li>
-</ul>
-<h1 id="2-architecture">2. Architecture<a class="headerlink" href="#2-architecture" title="Permanent link">&para;</a></h1>
-<p>Spark with Redis/Rocksdb key value stores </p>
-<ul>
-<li>No I/O bottleneck due to redis in DRAM and rocksdb in SSDs due to the small sized key/value I/O and DRAM/SSDs’ short latency (~200us)</li>
-<li>Filter predicates push down to redis and only associated partitions are chosen to be scanned</li>
-</ul>
-<p><img alt="flashbase-architecture2" src="images/flashbase-architecture2.png" /></p>
-<h1 id="3-features">3. Features<a class="headerlink" href="#3-features" title="Permanent link">&para;</a></h1>
-<ul>
-<li>Ingestion performance (500,000 records/sec/node)</li>
-<li>Extreme partitioning (up-to 2 billion partitions for a single node)</li>
-<li>Real-time query performance by using fine-grained partitions and filter acceleration (vector processing by exploiting XEON SIMD instructions)</li>
-<li>Column-store / row-store support</li>
-<li>DRAM - SSD - HDD Tiering •High  compression  ratio  and  compression  speed  (Gzip  level  compression ratio w/ LZ4 level speed)</li>
-<li>Low Write Amplification for SSD life time</li>
-</ul>
+                <h1 id="welcome-to-flashbase-docs">Welcome to FlashBase Docs<a class="headerlink" href="#welcome-to-flashbase-docs" title="Permanent link">&para;</a></h1>
+<p>(TBD)</p>
+<p>이 사이트는 <a href="https://mkdocs.org">MKDocs</a>를 이용하였습니다.</p>
               
             </div>
           </div>
@@ -179,7 +113,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="get-started1/" class="btn btn-neutral float-right" title="Automated Installation (recommanded)">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="get-started/" class="btn btn-neutral float-right" title="Get Started">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
     </div>
@@ -209,7 +143,7 @@
       
       
       
-        <span style="margin-left: 15px"><a href="get-started1/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="get-started/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
@@ -222,5 +156,5 @@
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2019-11-13 11:08:08
+Build Date UTC : 2019-11-15 01:00:32
 -->
