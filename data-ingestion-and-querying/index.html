@@ -8,7 +8,7 @@
   
   <meta name="author" content="LightningDB Team">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>1. Zeppelin - LightningDB Docs</title>
+  <title>Data Ingestion and Querying - LightningDB Docs</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "1. Zeppelin";
+    var mkdocs_page_name = "Data Ingestion and Querying";
     var mkdocs_page_input_path = "data-ingestion-and-querying.md";
     var mkdocs_page_url = "/docs/data-ingestion-and-querying/";
   </script>
@@ -97,6 +97,29 @@
     </ul>
 	    </li>
           
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Data Ingestion and Querying</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#1-table-reads-writes">1. Table Reads &amp; Writes</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#create-a-table">Create a table</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#2-data-ingestion-and-querying">2. Data Ingestion and Querying</a></li>
+    
+
+    <li class="toctree-l2"><a href="#3-querying">3. Querying</a></li>
+    
+
+    </ul>
+	    </li>
+          
         </ul>
       </div>
       &nbsp;
@@ -119,7 +142,7 @@
     
       
     
-    <li>1. Zeppelin</li>
+    <li>Data Ingestion and Querying</li>
     <li class="wy-breadcrumbs-aside">
       
         <a href="https://github.com/mnms/docs/edit/master/docs/data-ingestion-and-querying.md"> Edit on source repository</a>
@@ -131,13 +154,26 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="1-zeppelin">1. Zeppelin<a class="headerlink" href="#1-zeppelin" title="Permanent link">&para;</a></h1>
+                <h1 id="1-table-reads-writes">1. Table Reads &amp; Writes<a class="headerlink" href="#1-table-reads-writes" title="Permanent link">&para;</a></h1>
+<h3 id="create-a-table">Create a table<a class="headerlink" href="#create-a-table" title="Permanent link">&para;</a></h3>
+<p>You can use DataFrameWriter to write data into LightningDB.</p>
+<p>Now, LightingDB only supports "<a href="https://spark.apache.org/docs/2.3.1/api/java/org/apache/spark/sql/SaveMode.html#Append">Append mode</a>".</p>
+<pre><code class="scala">df.write.format(&quot;r2&quot;).insertInto(r2TableName)
+</code></pre>
+
 <h1 id="2-data-ingestion-and-querying">2. Data Ingestion and Querying<a class="headerlink" href="#2-data-ingestion-and-querying" title="Permanent link">&para;</a></h1>
 <h1 id="3-querying">3. Querying<a class="headerlink" href="#3-querying" title="Permanent link">&para;</a></h1>
               
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../command-line-interface/" class="btn btn-neutral" title="Commands"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -162,6 +198,8 @@
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
+      
+        <span><a href="../command-line-interface/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
     </span>
