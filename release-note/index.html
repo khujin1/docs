@@ -8,7 +8,7 @@
   
   <meta name="author" content="LightningDB Team">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Try out with Zeppelin - LightningDB Docs</title>
+  <title>Release Notes - LightningDB Docs</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Try out with Zeppelin";
-    var mkdocs_page_input_path = "try-with-zeppelin.md";
-    var mkdocs_page_url = "/docs/try-with-zeppelin/";
+    var mkdocs_page_name = "Release Notes";
+    var mkdocs_page_input_path = "release-note.md";
+    var mkdocs_page_url = "/docs/release-note/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -75,18 +75,9 @@
                     
     <a class="" href="../get-started-with-scratch/">Manual Installation</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Try out with Zeppelin</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#1-setting-for-zeppelin">1. Setting for Zeppelin</a></li>
-    
-
-    <li class="toctree-l3"><a href="#2-tutorial-with-zeppelin">2. Tutorial with Zeppelin</a></li>
-    
-
-    </ul>
+    <a class="" href="../try-with-zeppelin/">Try out with Zeppelin</a>
                 </li>
     </ul>
 	    </li>
@@ -111,9 +102,18 @@
     <a class="" href="../data-ingestion-and-querying/">Data Ingestion and Querying</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="../release-note/">Release Notes</a>
+    <a class="current" href="./">Release Notes</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#1-recommended-versions">1. Recommended Versions</a></li>
+    
+
+    <li class="toctree-l2"><a href="#2-release-notes">2. Release Notes</a></li>
+    
+
+    </ul>
 	    </li>
           
         </ul>
@@ -137,15 +137,11 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
-        
-          <li>Get Started &raquo;</li>
-        
-      
     
-    <li>Try out with Zeppelin</li>
+    <li>Release Notes</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/mnms/docs/edit/master/docs/try-with-zeppelin.md"> Edit on source repository</a>
+        <a href="https://github.com/mnms/docs/edit/master/docs/release-note.md"> Edit on source repository</a>
       
     </li>
   </ul>
@@ -154,38 +150,21 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="1-setting-for-zeppelin">1. Setting for Zeppelin<a class="headerlink" href="#1-setting-for-zeppelin" title="Permanent link">&para;</a></h1>
-<p>You can try LightningDB in Zeppelin notebook.</p>
-<p>Firstly, deploy and start the cluster of LightningDB using <a href="../command-line-interface/"><strong>fbctl</strong></a> before launching Zeppelin daemon.</p>
-<p>Secondly, in order to run LightingDB on the Spark, the jars in the LightingDB should be passed to the Spark.
-This can be done by adjusting SPARK_SUBMIT_OPTIONS in zeppllin-env.sh</p>
-<pre><code class="bash">$ cp $ZEPPELIN_HOME/conf/zeppelin-env.sh.template $ZEPPELIN_HOME/conf/zeppelin-env.sh
-$ vim $ZEPPELIN_HOME/conf/zeppelin-env.sh 
-
-# /home/ec2-user/tsr2/cluster_1/tsr2-assembly-1.0.0-SNAPSHOT is a path in which LightningDB is installed using fbctl.
-# This can be different if you installed LightningDB in different path.
-export SPARK_SUBMIT_OPTIONS=&quot;--jars $(find /home/ec2-user/tsr2/cluster_1/tsr2-assembly-1.0.0-SNAPSHOT/lib -name 'tsr2*' \
--o -name 'spark-r2*' -o -name '*jedis*' -o -name 'commons*' -o -name 'jdeferred*' -o -name 'geospark*' \
--o -name 'gt-*' | tr '\n' ',')&quot;
-</code></pre>
-
-<p>Finally, start Zeppelin daemon.</p>
-<pre><code class="bash">$ cd $ZEPPELIN_HOME/bin
-$ ./zeppelin-daemon.sh start
-</code></pre>
-
-<h1 id="2-tutorial-with-zeppelin">2. Tutorial with Zeppelin<a class="headerlink" href="#2-tutorial-with-zeppelin" title="Permanent link">&para;</a></h1>
-<p>After starting zeppelin daemon, you can access zeppelin UI using browser. The url is <a href="https://your-server-ip:8080">https://your-server-ip:8080</a>.</p>
-<p>There is <a href="https://github.com/mnms/tutorials">a github page for tutorial</a>.</p>
-<p>The repository includes a tool for generating sample data and a notebook for tutorial.</p>
-<p>You can import the tutorial notebook with its url.</p>
-<p>https://raw.githubusercontent.com/mnms/tutorials/master/zeppelin-notebook/note.json</p>
-<p><img alt="import notebook" src="../images/import_notebook.gif" /></p>
-<p>The tutorial runs on the spark interpreter of Zeppelin.
-Please make sure that the memory of Spark driver is at least 10GB in Spark interpreter setting.</p>
-<p><img alt="spark driver memory" src="../images/spark-interpreter.png" /></p>
-<p>Also, make sure that the timeout of shell command is at least 120000 ms.</p>
-<p><img alt="Shell timeout" src="../images/shell-timeout.png" /></p>
+                <h1 id="1-recommended-versions">1. Recommended Versions<a class="headerlink" href="#1-recommended-versions" title="Permanent link">&para;</a></h1>
+<p><a href="https://flashbase.s3.ap-northeast-2.amazonaws.com/flashbase.dev.master.5a6a38.bin">LightningDB ver 1.0</a></p>
+<h1 id="2-release-notes">2. Release Notes<a class="headerlink" href="#2-release-notes" title="Permanent link">&para;</a></h1>
+<p>Ver 1.0</p>
+<ul>
+<li>Date: 2019.11.20</li>
+<li>Download: <a href="https://flashbase.s3.ap-northeast-2.amazonaws.com/flashbase.dev.master.5a6a38.bin">LightningDB ver 1.0</a></li>
+<li>License: free</li>
+<li>Description<ul>
+<li>Initial version</li>
+<li>Support FBCTL</li>
+<li>Support geoSpatial functions</li>
+</ul>
+</li>
+</ul>
               
             </div>
           </div>
@@ -193,10 +172,8 @@ Please make sure that the memory of Spark driver is at least 10GB in Spark inter
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../run-and-deploy-fbctl/" class="btn btn-neutral float-right" title="Install and Upgrade">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-      
-        <a href="../get-started-with-scratch/" class="btn btn-neutral" title="Manual Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../data-ingestion-and-querying/" class="btn btn-neutral" title="Data Ingestion and Querying"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -224,10 +201,8 @@ Please make sure that the memory of Spark driver is at least 10GB in Spark inter
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../get-started-with-scratch/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../data-ingestion-and-querying/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
-      
-        <span style="margin-left: 15px"><a href="../run-and-deploy-fbctl/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
