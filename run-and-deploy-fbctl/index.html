@@ -201,6 +201,10 @@
 </div>
 <p>​</p>
 <h1 id="1-how-to-run-fbctl">1. How to run fbctl<a class="headerlink" href="#1-how-to-run-fbctl" title="Permanent link">&para;</a></h1>
+<p>If you try to use fbctl for the first time after EC2 instance was created, please update fbctl like below.</p>
+<pre><code class="bash">pip install fbctl --upgrade --user
+</code></pre>
+
 <h2 id="1-run">(1) Run<a class="headerlink" href="#1-run" title="Permanent link">&para;</a></h2>
 <p>To run fbctl, ${FBPATH} should be set. If not, following error messages will be shown.</p>
 <pre><code class="bash">To start using fbctl, you should set env FBPATH
@@ -275,6 +279,7 @@ OK, flashbase.dev.master.dbcb9e.bin
 </code></pre>
 
 <p>With only URL, instead of file path, LightningDB can be installed like below.</p>
+<p>To copy the link of the recommended FlashBase version, use <a href="../release-note/">Release Notes</a>.</p>
 <pre><code class="bash">https://flashbase.s3.ap-northeast-2.amazonaws.com/flashbase.dev.master.dbcb9e.bin 
 
 Downloading flashbase.dev.master.dbcb9e.bin

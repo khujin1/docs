@@ -95,23 +95,23 @@
     <a class="current" href="./">Commands</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#1-cluster-start">1. cluster start</a></li>
-    
-
-    <li class="toctree-l3"><a href="#2-cluster-stop">2. cluster stop</a></li>
-    
-
-    <li class="toctree-l3"><a href="#3-cluster-create">3. cluster create</a></li>
-    
-
-    <li class="toctree-l3"><a href="#4-cluster-clean">4. cluster clean</a></li>
-    
-
-    <li class="toctree-l3"><a href="#5-cluster-restart">5. cluster restart​</a></li>
+    <li class="toctree-l3"><a href="#1-cluster-commands">1. Cluster Commands</a></li>
     
         <ul>
         
-            <li><a class="toctree-l4" href="#6-check-cluster-infos">6. Check Cluster Infos</a></li>
+            <li><a class="toctree-l4" href="#1-cluster-configure">(1) cluster configure</a></li>
+        
+            <li><a class="toctree-l4" href="#2-cluster-start">(2) cluster start</a></li>
+        
+            <li><a class="toctree-l4" href="#3-cluster-create">(3) cluster create</a></li>
+        
+            <li><a class="toctree-l4" href="#4-cluster-stop">(4) cluster stop</a></li>
+        
+            <li><a class="toctree-l4" href="#5-cluster-clean">(5) cluster clean</a></li>
+        
+            <li><a class="toctree-l4" href="#6-cluster-restart">(6) cluster restart​</a></li>
+        
+            <li><a class="toctree-l4" href="#7-check-cluster-infos">(7) Check Cluster Infos</a></li>
         
         </ul>
     
@@ -169,52 +169,107 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="1-cluster-start">1. cluster start<a class="headerlink" href="#1-cluster-start" title="Permanent link">&para;</a></h1>
-<p><strong>Procedure</strong></p>
-<p>(1) Backup logs of the previous master/slave nodes</p>
+                <h1 id="1-cluster-commands">1. Cluster Commands<a class="headerlink" href="#1-cluster-commands" title="Permanent link">&para;</a></h1>
+<p>If you want to see the list of cluster commands, use the 'cluster' command without any option.</p>
+<pre><code class="bash">ec2-user@flashbase:1&gt; cluster
+
+NAME
+    fbctl cluster - This is cluster command
+
+SYNOPSIS
+    fbctl cluster COMMAND
+
+DESCRIPTION
+    This is cluster command
+
+COMMANDS
+    COMMAND is one of the following:
+
+     add_slave
+       Add slaves to cluster additionally
+
+     clean
+       Clean cluster
+
+     configure
+
+     create
+       Create cluster
+
+     ls
+       Check cluster list
+
+     rebalance
+       Rebalance
+
+     restart
+       Restart redist cluster
+
+     rowcount
+       Query and show cluster row count
+
+     start
+       Start cluster
+
+     stop
+       Stop cluster
+
+     use
+       Change selected cluster
+</code></pre>
+
+<h2 id="1-cluster-configure">(1) cluster configure<a class="headerlink" href="#1-cluster-configure" title="Permanent link">&para;</a></h2>
+<p>redis-{port}.conf is generated with using redis-{master/slave}.conf.template and redis.properties.</p>
+<pre><code class="bash">&gt; cluster configure
+</code></pre>
+
+<h2 id="2-cluster-start">(2) cluster start<a class="headerlink" href="#2-cluster-start" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Backup logs of the previous master/slave nodes</p>
 <ul>
 <li>All log files of previous master/slave nodes in '${SR2_HOME}<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>/logs/redis/' will be moved to '${SR2_HOME}/logs/redis/backup/'.</li>
 </ul>
-<p>(2) Generate directories to save data</p>
+</li>
+<li>
+<p>Generate directories to save data</p>
 <ul>
 <li>Save aof and rdb files of redis-server and RocksDB files in '${SR2_REDIS_DATA}'</li>
 </ul>
-<p>(3) Start redis-server process</p>
+</li>
+<li>
+<p>Start redis-server process</p>
 <ul>
 <li>Start master and slave redis-server with '${SR2_HOME}/conf/redis/redis-{port}.conf' file</li>
+</ul>
+</li>
 <li>Log files will be saved in '${SR2_HOME}/logs/redis/'</li>
 </ul>
-<pre><code class="bash">&gt; cluster start
-Check status of hosts ...
+<pre><code class="bash">ec2-user@flashbase:1&gt; cluster start
+Check status of hosts...
 OK
 Check cluster exist...
-
-...
-
+ - 127.0.0.1
 OK
 Backup redis master log in each MASTER hosts...
-
-...
-
-Starting master nodes : nodeA : 18100 ...
-
-...
-
-Starting slave nodes : nodeA : 18150|18151 ...
-
-...
-
+ - 127.0.0.1
+Generate redis configuration files for master hosts
+sync conf
++-----------+--------+
+| HOST      | STATUS |
++-----------+--------+
+| 127.0.0.1 | OK     |
++-----------+--------+
+Starting master nodes : 127.0.0.1 : 18100|18101|18102|18103|18104 ...
 Wait until all redis process up...
-cur: 0 / total: 12
-
-...
-
-cur: 12 / total: 12
-Complete all redis process up.
+cur: 5 / total: 5
+Complete all redis process up
 </code></pre>
 
-<p><strong>Error Handling</strong></p>
-<p>(1) ErrorCode 11</p>
+<p><strong>Errors</strong></p>
+<ul>
+<li>ErrorCode 11</li>
+</ul>
 <p>Redis-server(master) process with same port is already running. To resolve this error, use 'cluster stop' or 'kill {pid of the process}'.</p>
 <pre><code class="bash">$ cluster start
 ...
@@ -223,7 +278,9 @@ Complete all redis process up.
 We estimate that redis process is &lt;alive-redis-count&gt;.
 </code></pre>
 
-<p>(2) ErrorCode 12</p>
+<ul>
+<li>ErrorCode 12</li>
+</ul>
 <p>Redis-server(slave) process with same port is already running. To resolve this error, use 'cluster stop' or 'kill {pid of the process}'.</p>
 <pre><code class="bash">$ cluster start
 ...
@@ -231,7 +288,9 @@ We estimate that redis process is &lt;alive-redis-count&gt;.
 We estimate that redis process is &lt;alive-redis-count&gt;.
 </code></pre>
 
-<p>(3) Conf file not exist</p>
+<ul>
+<li>Conf file not exist</li>
+</ul>
 <p>Conf file is not found. To resove this error, use 'cluster configure' and then 'cluster start'.
 cluster configure 명령어를 실행시킨 후 cluster start를 진행하세요.</p>
 <pre><code class="bash">$ cluster start
@@ -239,86 +298,152 @@ cluster configure 명령어를 실행시킨 후 cluster start를 진행하세요
 FileNotExistError: ${SR2_HOME}/conf/redis/redis-{port}.conf
 </code></pre>
 
-<p>(4) max try error
+<ul>
+<li>max try error
 ​
-For detail information, please check log files.</p>
+For detail information, please check log files.</li>
+</ul>
 <pre><code class="bash">$ cluster start
 ...
 max try error
 </code></pre>
 
-<h1 id="2-cluster-stop">2. cluster stop<a class="headerlink" href="#2-cluster-stop" title="Permanent link">&para;</a></h1>
-<p>​Gracefully kill all redis-servers(master/slave) with SIGINT
-​​
-<strong>Options</strong></p>
-<p>(1) Force to kill all redis-servers(master/slave) with SIGKILL</p>
-<pre><code class="bash">--force
-</code></pre>
-
-<h1 id="3-cluster-create">3. cluster create<a class="headerlink" href="#3-cluster-create" title="Permanent link">&para;</a></h1>
+<h2 id="3-cluster-create">(3) cluster create<a class="headerlink" href="#3-cluster-create" title="Permanent link">&para;</a></h2>
 <p>After checking information of the cluster, create cluster of LightningDB.</p>
-<pre><code class="bash">&gt; cluster create
+<pre><code class="bash">ec2-user@flashbase:1&gt; cluster create
+Check status of hosts...
+OK
 &gt;&gt;&gt; Creating cluster
-+-------+-------+--------+
-| HOST  | PORT  | TYPE   |
-+-------+-------+--------+
-| nodeA | 18100 | MASTER |
-| nodeB | 18100 | MASTER |
-|   .       .       .    |
-|   .       .       .    |
-|   .       .       .    |
-| nodeD | 18150 | SLAVE  |
-| nodeD | 18151 | SLAVE  |
-+-------+-------+--------+
++-----------+-------+--------+
+| HOST      | PORT  | TYPE   |
++-----------+-------+--------+
+| 127.0.0.1 | 18100 | MASTER |
+| 127.0.0.1 | 18101 | MASTER |
+| 127.0.0.1 | 18102 | MASTER |
+| 127.0.0.1 | 18103 | MASTER |
+| 127.0.0.1 | 18104 | MASTER |
++-----------+-------+--------+
+replicas: 0
+
 Do you want to proceed with the create according to the above information? (y/n)
 y
-replicas: 2.00
-replicate [M] nodeA 18100 - [S] nodeA 18150
-replicate [M] nodeD 18100 - [S] nodeD 18151
-1 / 8 meet complete.
-2 / 8 meet complete.
-
-...
-
-8 / 8 meet complete.
+Cluster meet...
+ - 127.0.0.1:18100
+ - 127.0.0.1:18103
+ - 127.0.0.1:18104
+ - 127.0.0.1:18101
+ - 127.0.0.1:18102
+Adding slots...
+ - 127.0.0.1:18100, 3280
+ - 127.0.0.1:18103, 3276
+ - 127.0.0.1:18104, 3276
+ - 127.0.0.1:18101, 3276
+ - 127.0.0.1:18102, 3276
+Check cluster state and asign slot...
+Ok
 create cluster complete.
 </code></pre>
 
+<p><strong>Errors</strong></p>
+<p>When redis servers are not running, this error(Errno 111) will occur. To solve this error, use 'cluster start' command previously.</p>
+<pre><code class="bash">ec2-user@flashbase:1&gt; cluster create
+Check status of hosts...
+OK
+&gt;&gt;&gt; Creating cluster
++-----------+-------+--------+
+| HOST      | PORT  | TYPE   |
++-----------+-------+--------+
+| 127.0.0.1 | 18100 | MASTER |
+| 127.0.0.1 | 18101 | MASTER |
+| 127.0.0.1 | 18102 | MASTER |
+| 127.0.0.1 | 18103 | MASTER |
+| 127.0.0.1 | 18104 | MASTER |
++-----------+-------+--------+
+replicas: 0
+
+Do you want to proceed with the create according to the above information? (y/n)
+y
+127.0.0.1:18100 - [Errno 111] Connection refused
+</code></pre>
+
 <p>​​</p>
-<h1 id="4-cluster-clean">4. cluster clean<a class="headerlink" href="#4-cluster-clean" title="Permanent link">&para;</a></h1>
-<p><strong>Procedure​</strong></p>
-<p>(1) Remove conf files for redis-server</p>
-<p>(2) Remove all data(aof, rdb, RocksDB) of LightningDB</p>
-<h1 id="5-cluster-restart">5. cluster restart​<a class="headerlink" href="#5-cluster-restart" title="Permanent link">&para;</a></h1>
+<h2 id="4-cluster-stop">(4) cluster stop<a class="headerlink" href="#4-cluster-stop" title="Permanent link">&para;</a></h2>
+<p>​Gracefully kill all redis-servers(master/slave) with SIGINT
+​​</p>
+<pre><code class="bash">ec2-user@flashbase:1&gt; cluster stop
+Check status of hosts...
+OK
+Stopping master cluster of redis...
+cur: 5 / total: 5
+cur: 0 / total: 5
+Complete all redis process down
+</code></pre>
+
+<p><strong>Options</strong></p>
+<ul>
+<li>Force to kill all redis-servers(master/slave) with SIGKILL</li>
+</ul>
+<pre><code class="bash">--force
+</code></pre>
+
+<h2 id="5-cluster-clean">(5) cluster clean<a class="headerlink" href="#5-cluster-clean" title="Permanent link">&para;</a></h2>
+<p>Remove conf files for redis-server and all data(aof, rdb, RocksDB) of LightningDB</p>
+<pre><code class="bash">ec2-user@flashbase:1&gt; cluster clean
+Removing redis generated master configuration files
+ - 127.0.0.1
+Removing flash db directory, appendonly and dump.rdb files in master
+ - 127.0.0.1
+Removing master node configuration
+ - 127.0.0.1
+</code></pre>
+
+<h2 id="6-cluster-restart">(6) cluster restart​<a class="headerlink" href="#6-cluster-restart" title="Permanent link">&para;</a></h2>
 <p>Process 'cluster stop' and then 'cluster start'.​​</p>
 <p><strong>Options</strong></p>
-<p>(1) Force to kill all redis-servers(master/slave) with SIGKILL and then start again.</p>
+<ul>
+<li>Force to kill all redis-servers(master/slave) with SIGKILL and then start again.</li>
+</ul>
 <pre><code class="bash">--force-stop
 </code></pre>
 
-<p>(2) Remove all data(aof, rdb, RocksDB, conf files) before start again.</p>
+<ul>
+<li>Remove all data(aof, rdb, RocksDB, conf files) before start again.</li>
+</ul>
 <pre><code class="bash">--reset
 </code></pre>
 
-<p>(3) Process 'cluster create'. This command should be called with '--reset'.</p>
+<ul>
+<li>Process 'cluster create'. This command should be called with '--reset'.</li>
+</ul>
 <pre><code class="bash">--cluster
 </code></pre>
 
-<h2 id="6-check-cluster-infos">6. Check Cluster Infos<a class="headerlink" href="#6-check-cluster-infos" title="Permanent link">&para;</a></h2>
-<pre><code class="bash">cli ping --all
+<h2 id="7-check-cluster-infos">(7) Check Cluster Infos<a class="headerlink" href="#7-check-cluster-infos" title="Permanent link">&para;</a></h2>
+<p>With the following commands, you can check the status of the cluster.</p>
+<ul>
+<li>Send PING</li>
+</ul>
+<pre><code class="bash">&gt; cli ping --all
 </code></pre>
 
-<p>Send PING to all redis-server processes and check if all of them are healthy.</p>
-<pre><code class="bash">cli cluster info
+<ul>
+<li>Check the status of the cluster</li>
+</ul>
+<pre><code class="bash">&gt; cli cluster info
 </code></pre>
 
-<p>Check information of the cluster.</p>
-<pre><code class="bash">cli cluster nodes
+<ul>
+<li>Check the list of the nodes those are organizing the cluster.</li>
+</ul>
+<pre><code class="bash">ec2-user@flashbase:1&gt; cli cluster nodes
+559af5e90c3f2c92f19c927c29166c268d938e8f 127.0.0.1:18104 master - 0 1574127926000 4 connected 6556-9831
+174e2a62722273fb83814c2f12e2769086c3d185 127.0.0.1:18101 myself,master - 0 1574127925000 3 connected 9832-13107
+35ab4d3f7f487c5332d7943dbf4b20d5840053ea 127.0.0.1:18100 master - 0 1574127926000 1 connected 0-3279
+f39ed05ace18e97f74c745636ea1d171ac1d456f 127.0.0.1:18103 master - 0 1574127927172 0 connected 3280-6555
+9fd612b86a9ce1b647ba9170b8f4a8bfa5c875fc 127.0.0.1:18102 master - 0 1574127926171 2 connected 13108-16383
 </code></pre>
 
-<p>List up all redis-server processes that compose the cluster.</p>
-<p>​
-​</p>
+<p>​</p>
 <div class="footnote">
 <hr />
 <ol>
