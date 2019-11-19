@@ -86,7 +86,7 @@
     <a class="current" href="./">Installation</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#1-how-to-run-fbctl">1. How to run fbctl</a></li>
+    <li class="toctree-l3"><a href="#1-how-to-run-fbctl">1. How to run FBCTL</a></li>
     
 
     <li class="toctree-l3"><a href="#2-deploy-lightningdb">2. Deploy LightningDB</a></li>
@@ -182,14 +182,14 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="1-how-to-run-fbctl">1. How to run fbctl<a class="headerlink" href="#1-how-to-run-fbctl" title="Permanent link">&para;</a></h1>
-<p>If you try to use fbctl for the first time after EC2 instance was created, please update fbctl like below.</p>
+                <h1 id="1-how-to-run-fbctl">1. How to run FBCTL<a class="headerlink" href="#1-how-to-run-fbctl" title="Permanent link">&para;</a></h1>
+<p>If you try to use FBCTL for the first time after EC2 instance was created, please update FBCTL like below.</p>
 <pre><code class="bash">pip install fbctl --upgrade --user
 </code></pre>
 
 <p><strong>(1) Run</strong></p>
-<p>To run fbctl, ${FBPATH} should be set. If not, following error messages will be shown.</p>
-<pre><code class="bash">To start using fbctl, you should set env FBPATH
+<p>To run FBCTL, ${FBPATH} should be set. If not, following error messages will be shown.</p>
+<pre><code class="bash">To start using FBCTL, you should set env FBPATH
 ex)
 export FBPATH=$HOME/.flashbase
 </code></pre>
@@ -198,11 +198,11 @@ export FBPATH=$HOME/.flashbase
 <p class="admonition-title">Tip</p>
 <p>In case of EC2 Instance, this path is set automatically.</p>
 </div>
-<p>Run <strong>fbctl</strong> by typing 'fbctl'</p>
+<p>Run FBCTL by typing 'fbctl'</p>
 <pre><code class="bash">$ fbctl
 </code></pre>
 
-<p>When fbctl starts at the first time,  you needs to confirm 'base_directory'.</p>
+<p>When FBCTL starts at the first time,  you needs to confirm 'base_directory'.</p>
 <p>[~/tsr2]<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>] is default value.</p>
 <pre><code class="bash">Type base directory of flashbase [~/tsr2]
 ~/tsr2
@@ -210,7 +210,7 @@ OK, ~/tsr2
 </code></pre>
 
 <p>In '${FBPATH}/.flashbase/config', you can modify 'base_directory'.</p>
-<p>If you logs in fbctl normally, fbctl starts on last visited cluster.
+<p>If you logs in FBCTL normally, FBCTL starts on last visited cluster.
 In case of first login, '-' is shown instead of cluster number.</p>
 <pre><code class="bash">root@flashbase:-&gt;
 
@@ -222,10 +222,10 @@ root@flashbase:1&gt;
 
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>In this page, '$' means that you are in Centos and '&gt;' means that you are in fbctl.</p>
+<p>In this page, '$' means that you are in Centos and '&gt;' means that you are in FBCTL.</p>
 </div>
 <p><strong>(2) Log messages</strong></p>
-<p>Log messages of fbctl will be saved in '$FBPATH/logs/fb-roate.log'.</p>
+<p>Log messages of FBCTL will be saved in '$FBPATH/logs/fb-roate.log'.</p>
 <p>Its max-file-size is 1GiB and <strong>rolling update</strong> will be done in case of exceed of size limit.</p>
 <h1 id="2-deploy-lightningdb">2. Deploy LightningDB<a class="headerlink" href="#2-deploy-lightningdb" title="Permanent link">&para;</a></h1>
 <p>Deploy is the procedure that LightningDB is installed with the specified cluster number.</p>
@@ -325,7 +325,7 @@ y
 </code></pre>
 
 <p><strong>(7) Deploy cluster</strong></p>
-<p>After deploying is completed, following messages are shown and fbctl of the cluster is activated.</p>
+<p>After deploying is completed, following messages are shown and FBCTL of the cluster is activated.</p>
 <pre><code class="bash">Check status of hosts...
 +-----------+--------+
 | HOST      | STATUS |
@@ -459,7 +459,7 @@ replicas: 0
 Do you want to proceed with the create according to the above information? (y/n)
 y
 Cluster meet...
- - 127.0.0.1:18100
+ - 127.0.0.1:18100docs/index.md
  - 127.0.0.1:18103
  - 127.0.0.1:18104
  - 127.0.0.1:18101
@@ -475,7 +475,7 @@ Ok
 create cluster complete.
 </code></pre>
 
-<p>From now, you can use LightningDB. With <a href="../command-line-interface/">Command Line</a>, you can get more commands of LightningDB.</p>
+<p>From now, you can try ingestion and querying in LightningDB with <a href="../try-with-zeppelin/">Zeppelin</a> . And for further information about commands of FBCTL, please use <a href="../command-line-interface/">Command Line</a>.</p>
 <div class="footnote">
 <hr />
 <ol>
