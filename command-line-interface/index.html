@@ -324,6 +324,7 @@ max try error
 
 <p><strong>(3) cluster create</strong></p>
 <p>After checking information of the cluster, create cluster of LightningDB.</p>
+<p>Case 1) When redis-server processes are running, create cluster only.</p>
 <pre><code class="bash">ec2-user@flashbase:1&gt; cluster create
 Check status of hosts...
 OK
@@ -353,6 +354,56 @@ Adding slots...
  - 127.0.0.1:18104, 3276
  - 127.0.0.1:18101, 3276
  - 127.0.0.1:18102, 3276
+Check cluster state and asign slot...
+Ok
+create cluster complete.
+</code></pre>
+
+<p>Case 2) When redis-server processes are not running, create cluster after launching redis-server processes with 'cluster start' command.</p>
+<pre><code class="bash">ec2-user@flashbase:4&gt; cluster create
+Check status of hosts...
+OK
+Backup redis master log in each MASTER hosts...
+ - 127.0.0.1
+create redis data directory in each MASTER hosts
+ - 127.0.0.1
+sync conf
++-----------+--------+
+| HOST      | STATUS |
++-----------+--------+
+| 127.0.0.1 | OK     |
++-----------+--------+
+OK
+Starting master nodes : 127.0.0.1 : 18100|18101|18102|18103|18104 ...
+Wait until all redis process up...
+cur: 5 / total: 5
+Complete all redis process up
+&gt;&gt;&gt; Creating cluster
++-----------+-------+--------+
+| HOST      | PORT  | TYPE   |
++-----------+-------+--------+
+| 127.0.0.1 | 18100 | MASTER |
+| 127.0.0.1 | 18101 | MASTER |
+| 127.0.0.1 | 18102 | MASTER |
+| 127.0.0.1 | 18103 | MASTER |
+| 127.0.0.1 | 18104 | MASTER |
++-----------+-------+--------+
+replicas: 0
+
+Do you want to proceed with the create according to the above information? (y/n)
+y
+Cluster meet...
+ - 127.0.0.1:18103
+ - 127.0.0.1:18104
+ - 127.0.0.1:18101
+ - 127.0.0.1:18102
+ - 127.0.0.1:18100
+Adding slots...
+ - 127.0.0.1:18103, 3280
+ - 127.0.0.1:18104, 3276
+ - 127.0.0.1:18101, 3276
+ - 127.0.0.1:18102, 3276
+ - 127.0.0.1:18100, 3276
 Check cluster state and asign slot...
 Ok
 create cluster complete.
@@ -727,7 +778,21 @@ f9f7fcee9009f25618e63d2771ee2529f814c131 127.0.0.1:18354 slave e67005a46984445e5
 <ul>
 <li>Send PING</li>
 </ul>
-<pre><code class="bash">&gt; cli ping --all
+<pre><code class="bash">ec2-user@flashbase:1&gt; cli ping --all
++-----------------+--------+
+| addr            | stdout |
++-----------------+--------+
+| 127.0.0.1:18100 | PONG   |
+|                 |        |
+| 127.0.0.1:18101 | PONG   |
+|                 |        |
+| 127.0.0.1:18102 | PONG   |
+|                 |        |
+| 127.0.0.1:18103 | PONG   |
+|                 |        |
+| 127.0.0.1:18104 | PONG   |
+|                 |        |
++-----------------+--------+
 </code></pre>
 
 <ul>
