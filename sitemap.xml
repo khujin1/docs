@@ -6,12 +6,17 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://mnms.github.io/docs/get-started-with-aws/</loc>
+     <loc>https://mnms.github.io/docs/release-note/</loc>
      <lastmod>2019-11-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://mnms.github.io/docs/get-started-with-scratch/</loc>
+     <loc>https://mnms.github.io/docs/prerequisite/</loc>
+     <lastmod>2019-11-19</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://mnms.github.io/docs/install-fbctl/</loc>
      <lastmod>2019-11-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -21,22 +26,17 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://mnms.github.io/docs/run-and-deploy-fbctl/</loc>
-     <lastmod>2019-11-19</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
      <loc>https://mnms.github.io/docs/command-line-interface/</loc>
      <lastmod>2019-11-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://mnms.github.io/docs/data-ingestion-and-querying/</loc>
+     <loc>https://mnms.github.io/docs/version-update/</loc>
      <lastmod>2019-11-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://mnms.github.io/docs/release-note/</loc>
+     <loc>https://mnms.github.io/docs/get-started-with-scratch/</loc>
      <lastmod>2019-11-19</lastmod>
      <changefreq>daily</changefreq>
     </url>

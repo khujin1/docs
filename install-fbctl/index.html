@@ -8,7 +8,7 @@
   
   <meta name="author" content="LightningDB Team">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Install and Upgrade - LightningDB Docs</title>
+  <title>Installation - LightningDB Docs</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Install and Upgrade";
-    var mkdocs_page_input_path = "run-and-deploy-fbctl.md";
-    var mkdocs_page_url = "/docs/run-and-deploy-fbctl/";
+    var mkdocs_page_name = "Installation";
+    var mkdocs_page_input_path = "install-fbctl.md";
+    var mkdocs_page_url = "/docs/install-fbctl/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -60,21 +60,50 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="..">Introduction</a>
+    <span class="caption-text">Introduction</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="..">Overview</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../release-note/">Release Notes</a>
+                </li>
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">Get Started</span>
+    <span class="caption-text">Getting Started</span>
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../get-started-with-aws/">Automated Installation (recommended)</a>
+    <a class="" href="../prerequisite/">Prerequisite</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../get-started-with-scratch/">Manual Installation</a>
+    <a class="current" href="./">Installation</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#1-how-to-run-fbctl">1. How to run fbctl</a></li>
+    
+
+    <li class="toctree-l3"><a href="#2-deploy-lightningdb">2. Deploy LightningDB</a></li>
+    
+
+    <li class="toctree-l3"><a href="#3-start-lightningdb">3. Start LightningDB</a></li>
+    
+
+    </ul>
                 </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tutorial</span>
+    <ul class="subnav">
                 <li class="">
                     
     <a class="" href="../try-with-zeppelin/">Try out with Zeppelin</a>
@@ -84,77 +113,35 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">FBCTL</span>
+    <span class="caption-text">Interface</span>
     <ul class="subnav">
-                <li class=" current">
-                    
-    <a class="current" href="./">Install and Upgrade</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#1-how-to-run-fbctl">1. How to run fbctl</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#1-run">(1) Run</a></li>
-        
-            <li><a class="toctree-l4" href="#2-log-messages">(2) Log messages</a></li>
-        
-        </ul>
-    
-
-    <li class="toctree-l3"><a href="#2-deploy-lightningdb">2. Deploy LightningDB</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#1-select-installer">(1) Select installer</a></li>
-        
-            <li><a class="toctree-l4" href="#2-type-hosts">(2) Type Hosts</a></li>
-        
-            <li><a class="toctree-l4" href="#3-type-masters">(3) Type Masters</a></li>
-        
-            <li><a class="toctree-l4" href="#4-type-information-of-slave">(4) Type information of slave</a></li>
-        
-            <li><a class="toctree-l4" href="#5-type-the-count-of-ssddisk-and-the-path-of-db-files">(5) Type the count of SSD(disk) and the path of DB files</a></li>
-        
-            <li><a class="toctree-l4" href="#6-check-all-settings-finally">(6) Check all settings finally</a></li>
-        
-            <li><a class="toctree-l4" href="#7-deploy-cluster">(7) Deploy cluster</a></li>
-        
-        </ul>
-    
-
-    <li class="toctree-l3"><a href="#3-lightningdb-version-update">3. LightningDB Version Update</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#1-select-installer_1">(1) Select installer</a></li>
-        
-            <li><a class="toctree-l4" href="#2-restore">(2) Restore</a></li>
-        
-            <li><a class="toctree-l4" href="#3-check-all-settings-finally">(3) Check all settings finally</a></li>
-        
-            <li><a class="toctree-l4" href="#4-restart">(4) Restart</a></li>
-        
-        </ul>
-    
-
-    </ul>
-                </li>
                 <li class="">
                     
-    <a class="" href="../command-line-interface/">Commands</a>
+    <a class="" href="../command-line-interface/">Command Line</a>
                 </li>
     </ul>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="../data-ingestion-and-querying/">Data Ingestion and Querying</a>
+    <span class="caption-text">Operation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../version-update/">Version update</a>
+                </li>
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="../release-note/">Release Notes</a>
+    <span class="caption-text">Additional Resources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../get-started-with-scratch/">Manual Installation</a>
+                </li>
+    </ul>
 	    </li>
           
         </ul>
@@ -179,14 +166,14 @@
     
       
         
-          <li>FBCTL &raquo;</li>
+          <li>Getting Started &raquo;</li>
         
       
     
-    <li>Install and Upgrade</li>
+    <li>Installation</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/mnms/docs/edit/master/docs/run-and-deploy-fbctl.md"> Edit on source repository</a>
+        <a href="https://github.com/mnms/docs/edit/master/docs/install-fbctl.md"> Edit on source repository</a>
       
     </li>
   </ul>
@@ -195,17 +182,12 @@
           <div role="main">
             <div class="section">
               
-                <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Command Line Interface(CLI) of LightningDB supports not only deploy and start command but also many commands to access and manipulate data in LightningDB.</p>
-</div>
-<p>​</p>
-<h1 id="1-how-to-run-fbctl">1. How to run fbctl<a class="headerlink" href="#1-how-to-run-fbctl" title="Permanent link">&para;</a></h1>
+                <h1 id="1-how-to-run-fbctl">1. How to run fbctl<a class="headerlink" href="#1-how-to-run-fbctl" title="Permanent link">&para;</a></h1>
 <p>If you try to use fbctl for the first time after EC2 instance was created, please update fbctl like below.</p>
 <pre><code class="bash">pip install fbctl --upgrade --user
 </code></pre>
 
-<h2 id="1-run">(1) Run<a class="headerlink" href="#1-run" title="Permanent link">&para;</a></h2>
+<p><strong>(1) Run</strong></p>
 <p>To run fbctl, ${FBPATH} should be set. If not, following error messages will be shown.</p>
 <pre><code class="bash">To start using fbctl, you should set env FBPATH
 ex)
@@ -217,18 +199,18 @@ export FBPATH=$HOME/.flashbase
 <p>In case of EC2 Instance, this path is set automatically.</p>
 </div>
 <p>Run <strong>fbctl</strong> by typing 'fbctl'</p>
-<pre><code class="bash">$ fbcli
+<pre><code class="bash">$ fbctl
 </code></pre>
 
-<p>When fbctl starts at the first time, user needs to confirm 'base_directory'. </p>
+<p>When fbctl starts at the first time,  you needs to confirm 'base_directory'.</p>
 <p>[~/tsr2]<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>] is default value.</p>
 <pre><code class="bash">Type base directory of flashbase [~/tsr2]
 ~/tsr2
 OK, ~/tsr2
 </code></pre>
 
-<p>In '${FBPATH}/.flashbase/config', user can modify 'base_directory'.</p>
-<p>If user logs in fbctl normally, fbctl starts on last visited cluster.
+<p>In '${FBPATH}/.flashbase/config', you can modify 'base_directory'.</p>
+<p>If you logs in fbctl normally, fbctl starts on last visited cluster.
 In case of first login, '-' is shown instead of cluster number.</p>
 <pre><code class="bash">root@flashbase:-&gt;
 
@@ -240,18 +222,18 @@ root@flashbase:1&gt;
 
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>In this page, '$' means that user is in Centos and '&gt;' means that user is in fbctl.</p>
+<p>In this page, '$' means that you are in Centos and '&gt;' means that you are in fbctl.</p>
 </div>
-<h2 id="2-log-messages">(2) Log messages<a class="headerlink" href="#2-log-messages" title="Permanent link">&para;</a></h2>
+<p><strong>(2) Log messages</strong></p>
 <p>Log messages of fbctl will be saved in '$FBPATH/logs/fb-roate.log'.</p>
 <p>Its max-file-size is 1GiB and <strong>rolling update</strong> will be done in case of exceed of size limit.</p>
 <h1 id="2-deploy-lightningdb">2. Deploy LightningDB<a class="headerlink" href="#2-deploy-lightningdb" title="Permanent link">&para;</a></h1>
-<p><strong>Deploy</strong> is the procedure that LightningDB is installed with the specified cluster number.</p>
-<p>User could make LightningDB cluster with the following command.</p>
+<p>Deploy is the procedure that LightningDB is installed with the specified cluster number.</p>
+<p>You could make LightningDB cluster with the following command.</p>
 <pre><code class="bash">&gt; deploy 1
 </code></pre>
 
-<p>After deploy command, user should type the following information that provides its last used value.</p>
+<p>After deploy command, you should type the following information that provides its last used value.</p>
 <ul>
 <li>installer</li>
 <li>host</li>
@@ -264,7 +246,7 @@ root@flashbase:1&gt;
 <pre><code class="bash">&gt; deploy --history-save=False
 </code></pre>
 
-<h2 id="1-select-installer">(1) Select installer<a class="headerlink" href="#1-select-installer" title="Permanent link">&para;</a></h2>
+<p><strong>(1) Select installer</strong></p>
 <pre><code class="bash">Select installer
 
     [ INSTALLER LIST ]
@@ -286,14 +268,14 @@ Downloading flashbase.dev.master.dbcb9e.bin
 [=======                                           ] 15%
 </code></pre>
 
-<h2 id="2-type-hosts">(2) Type Hosts<a class="headerlink" href="#2-type-hosts" title="Permanent link">&para;</a></h2>
+<p><strong>(2) Type Hosts</strong></p>
 <p>IP address or hostname can be used. In case of several hosts, list can be seperated by comma(',').</p>
 <pre><code class="bash">Please type host list separated by comma(,) [127.0.0.1]
 nodeA, nodeB, nodeC, nodeD
 OK, ['nodeA', 'nodeB', 'nodeC', 'nodeD']
 </code></pre>
 
-<h2 id="3-type-masters">(3) Type Masters<a class="headerlink" href="#3-type-masters" title="Permanent link">&para;</a></h2>
+<p><strong>(3) Type Masters</strong></p>
 <pre><code class="bash">How many masters would you like to create on each host? [1]
 1
 OK, 1
@@ -303,7 +285,7 @@ OK, ['18100']
 </code></pre>
 
 <p>Define how many master processes will be created in the cluster per server.</p>
-<h2 id="4-type-information-of-slave">(4) Type information of slave<a class="headerlink" href="#4-type-information-of-slave" title="Permanent link">&para;</a></h2>
+<p><strong>(4) Type information of slave</strong></p>
 <pre><code class="bash">How many replicas would you like to create on each master? [2]
 2
 OK, 2
@@ -313,7 +295,7 @@ OK, ['18150-18151']
 </code></pre>
 
 <p>Define how many slave processes will be created for a master process.</p>
-<h2 id="5-type-the-count-of-ssddisk-and-the-path-of-db-files">(5) Type the count of SSD(disk) and the path of DB files<a class="headerlink" href="#5-type-the-count-of-ssddisk-and-the-path-of-db-files" title="Permanent link">&para;</a></h2>
+<p><strong>(5) Type the count of SSD(disk) and the path of DB files</strong></p>
 <pre><code class="bash">How many sdd would you like to use? [3]
 3
 OK, 3
@@ -323,7 +305,7 @@ OK, ~/sata_ssd/ssd_
 
 </code></pre>
 
-<h2 id="6-check-all-settings-finally">(6) Check all settings finally<a class="headerlink" href="#6-check-all-settings-finally" title="Permanent link">&para;</a></h2>
+<p><strong>(6) Check all settings finally</strong></p>
 <p>Finally all settings will be shown and confirmation will be requested like below.</p>
 <pre><code class="bash">+-----------------+---------------------------------------------+
 | NAME            | VALUE                                       |
@@ -342,7 +324,7 @@ Do you want to proceed with the deploy accroding to the above information? (y/n)
 y
 </code></pre>
 
-<h2 id="7-deploy-cluster">(7) Deploy cluster<a class="headerlink" href="#7-deploy-cluster" title="Permanent link">&para;</a></h2>
+<p><strong>(7) Deploy cluster</strong></p>
 <p>After deploying is completed, following messages are shown and fbctl of the cluster is activated.</p>
 <pre><code class="bash">Check status of hosts...
 +-----------+--------+
@@ -375,6 +357,7 @@ Cluster 1 selected.
 </code></pre>
 
 <p>When an error occurs during deploying, error messages will be shown like below.</p>
+<p><strong>(8) Errors</strong></p>
 <p><strong>Host connection error</strong></p>
 <pre><code class="bash">Check status of hosts...
 +-------+------------------+
@@ -434,100 +417,70 @@ Cluster information exist on some hosts.
 </code></pre>
 
 <p>If localhost(127.0.0.1) is not included in host information, this error occurs. Please add localhost in host list in this case.</p>
-<p>From now, user can start and manage clusters of LightningDB with <a href="../command-line-interface/">Commands</a>.</p>
-<h1 id="3-lightningdb-version-update">3. LightningDB Version Update<a class="headerlink" href="#3-lightningdb-version-update" title="Permanent link">&para;</a></h1>
-<p>In case of version update, 'deploy' command is used.</p>
-<pre><code class="bash">&gt; c 1 // alias of 'cluster use 1'
-&gt; deploy
-(Watch out) Cluster 1 is already deployed. Do you want to deploy again? (y/n) [n]
-y
-</code></pre>
-
-<h2 id="1-select-installer_1">(1) Select installer<a class="headerlink" href="#1-select-installer_1" title="Permanent link">&para;</a></h2>
-<pre><code class="bash">Select installer
-
-    [ INSTALLER LIST ]
-    (1) flashbase.dev.master.dbcb9e.bin
-    (2) flashbase.trial.master.dbcb9e-dirty.bin
-    (3) flashbase.trial.master.dbcb9e.bin
-
-Please enter the number, file path or url of the installer you want to use.
-you can also add file in list by copy to '$FBPATH/releases/'
-1
-OK, flashbase.dev.master.dbcb9e.bin
-</code></pre>
-
-<h2 id="2-restore">(2) Restore<a class="headerlink" href="#2-restore" title="Permanent link">&para;</a></h2>
-<pre><code class="bash">Do you want to restore conf? (y/n)
-y
-</code></pre>
-
-<p>If the current settings will be reused, type 'y'.</p>
-<h2 id="3-check-all-settings-finally">(3) Check all settings finally<a class="headerlink" href="#3-check-all-settings-finally" title="Permanent link">&para;</a></h2>
-<pre><code class="bash">+-----------------+---------------------------------------------+
-| NAME            | VALUE                                       |
-+-----------------+---------------------------------------------+
-| installer       | flashbase.dev.master.dbcb9e.bin             |
-| nodes           | nodeA                                       |
-|                 | nodeB                                       |
-|                 | nodeC                                       |
-|                 | nodeD                                       |
-| master ports    | 18100                                       |
-| slave ports     | 18150-18151                                 |
-| ssd count       | 3                                           |
-| redis data path | ~/sata_ssd/ssd_                             |
-| redis db path   | ~/sata_ssd/ssd_                             |
-| flash db path   | ~/sata_ssd/ssd_                             |
-+-----------------+---------------------------------------------+
-Do you want to proceed with the deploy accroding to the above information? (y/n)
-y
+<h1 id="3-start-lightningdb">3. Start LightningDB<a class="headerlink" href="#3-start-lightningdb" title="Permanent link">&para;</a></h1>
+<p>Start redis-server process with using 'cluster start' command.</p>
+<pre><code class="bash">ec2-user@flashbase:1&gt; cluster start
 Check status of hosts...
+OK
+Check cluster exist...
+ - 127.0.0.1
+OK
+Backup redis master log in each MASTER hosts...
+ - 127.0.0.1
+Generate redis configuration files for master hosts
+sync conf
 +-----------+--------+
 | HOST      | STATUS |
 +-----------+--------+
-| nodeA     | OK     |
-| nodeB     | OK     |
-| nodeC     | OK     |
-| nodeD     | OK     |
+| 127.0.0.1 | OK     |
 +-----------+--------+
-Checking for cluster exist...
-+------+--------+
-| HOST | STATUS |
-+------+--------+
-Backup conf of cluster 1...
-OK, cluster_1_conf_bak_&lt;time-stamp&gt;
-Backup info of cluster 1 at nodeA...
-OK, cluster_1_bak_&lt;time-stamp&gt;
-Backup info of cluster 1 at nodeB...
-OK, cluster_1_bak_&lt;time-stamp&gt;
-Backup info of cluster 1 at nodeC...
-OK, cluster_1_bak_&lt;time-stamp&gt;
-Backup info of cluster 1 at nodeD...
-OK, cluster_1_bak_&lt;time-stamp&gt;
-Transfer installer and execute...
- - nodeA
- - nodeB
- - nodeC
- - nodeD
-Sync conf...
-Complete to deploy cluster 1.
-Cluster 1 selected.
+Starting master nodes : 127.0.0.1 : 18100|18101|18102|18103|18104 ...
+Wait until all redis process up...
+cur: 5 / total: 5
+Complete all redis process up
 </code></pre>
 
-<ul>
-<li>Backup path of cluster: ${base-directory}/backup/cluster_${cluster-id}_bak_${time-stamp}</li>
-<li>Backup path of conf files: $FBAPTH/conf_backup/cluster_${cluster-id}_conf_bak_${time-stamp}</li>
-</ul>
-<h2 id="4-restart">(4) Restart<a class="headerlink" href="#4-restart" title="Permanent link">&para;</a></h2>
-<pre><code class="bash">&gt; cluster restart
+<p>Create cluster of LightningDB with using 'cluster create' command.</p>
+<pre><code class="bash">ec2-user@flashbase:1&gt; cluster create
+Check status of hosts...
+OK
+&gt;&gt;&gt; Creating cluster
++-----------+-------+--------+
+| HOST      | PORT  | TYPE   |
++-----------+-------+--------+
+| 127.0.0.1 | 18100 | MASTER |
+| 127.0.0.1 | 18101 | MASTER |
+| 127.0.0.1 | 18102 | MASTER |
+| 127.0.0.1 | 18103 | MASTER |
+| 127.0.0.1 | 18104 | MASTER |
++-----------+-------+--------+
+replicas: 0
+
+Do you want to proceed with the create according to the above information? (y/n)
+y
+Cluster meet...
+ - 127.0.0.1:18100
+ - 127.0.0.1:18103
+ - 127.0.0.1:18104
+ - 127.0.0.1:18101
+ - 127.0.0.1:18102
+Adding slots...
+ - 127.0.0.1:18100, 3280
+ - 127.0.0.1:18103, 3276
+ - 127.0.0.1:18104, 3276
+ - 127.0.0.1:18101, 3276
+ - 127.0.0.1:18102, 3276
+Check cluster state and asign slot...
+Ok
+create cluster complete.
 </code></pre>
 
-<p>After restart, new version will be applied.</p>
+<p>From now, you can use LightningDB. With <a href="../command-line-interface/">Command Line</a>, you can get more commands of LightningDB.</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>If user types 'enter' without any text, the default value is applied. In some case, default value will not provided.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>If you type 'enter' without any text, the default value is applied. In some case, default value will not provided.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -538,10 +491,10 @@ Cluster 1 selected.
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../command-line-interface/" class="btn btn-neutral float-right" title="Commands">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../try-with-zeppelin/" class="btn btn-neutral float-right" title="Try out with Zeppelin">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../try-with-zeppelin/" class="btn btn-neutral" title="Try out with Zeppelin"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../prerequisite/" class="btn btn-neutral" title="Prerequisite"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -569,10 +522,10 @@ Cluster 1 selected.
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../try-with-zeppelin/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../prerequisite/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../command-line-interface/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../try-with-zeppelin/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

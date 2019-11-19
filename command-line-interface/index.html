@@ -8,7 +8,7 @@
   
   <meta name="author" content="LightningDB Team">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Commands - LightningDB Docs</title>
+  <title>Command Line - LightningDB Docs</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Commands";
+    var mkdocs_page_name = "Command Line";
     var mkdocs_page_input_path = "command-line-interface.md";
     var mkdocs_page_url = "/docs/command-line-interface/";
   </script>
@@ -60,21 +60,38 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="..">Introduction</a>
+    <span class="caption-text">Introduction</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="..">Overview</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../release-note/">Release Notes</a>
+                </li>
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">Get Started</span>
+    <span class="caption-text">Getting Started</span>
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../get-started-with-aws/">Automated Installation (recommended)</a>
+    <a class="" href="../prerequisite/">Prerequisite</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../get-started-with-scratch/">Manual Installation</a>
+    <a class="" href="../install-fbctl/">Installation</a>
                 </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tutorial</span>
+    <ul class="subnav">
                 <li class="">
                     
     <a class="" href="../try-with-zeppelin/">Try out with Zeppelin</a>
@@ -84,63 +101,17 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">FBCTL</span>
+    <span class="caption-text">Interface</span>
     <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../run-and-deploy-fbctl/">Install and Upgrade</a>
-                </li>
                 <li class=" current">
                     
-    <a class="current" href="./">Commands</a>
+    <a class="current" href="./">Command Line</a>
     <ul class="subnav">
             
     <li class="toctree-l3"><a href="#1-cluster-commands">1. Cluster Commands</a></li>
     
-        <ul>
-        
-            <li><a class="toctree-l4" href="#1-cluster-configure">(1) cluster configure</a></li>
-        
-            <li><a class="toctree-l4" href="#2-cluster-start">(2) cluster start</a></li>
-        
-            <li><a class="toctree-l4" href="#3-cluster-create">(3) cluster create</a></li>
-        
-            <li><a class="toctree-l4" href="#4-cluster-stop">(4) cluster stop</a></li>
-        
-            <li><a class="toctree-l4" href="#5-cluster-clean">(5) cluster clean</a></li>
-        
-            <li><a class="toctree-l4" href="#6-cluster-restart">(6) cluster restart​</a></li>
-        
-            <li><a class="toctree-l4" href="#7-cluster-ls">(7) cluster ls</a></li>
-        
-            <li><a class="toctree-l4" href="#8-cluster-use">(8) cluster use</a></li>
-        
-            <li><a class="toctree-l4" href="#9-cluster-add_slave">(9) cluster add_slave</a></li>
-        
-            <li><a class="toctree-l4" href="#10-cluster-rowcount">(10) cluster rowcount</a></li>
-        
-            <li><a class="toctree-l4" href="#11-check-status-of-cluster">(11) Check status of cluster</a></li>
-        
-        </ul>
-    
 
     <li class="toctree-l3"><a href="#2-thrift-server-commands">2. Thrift Server Commands</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#1-thriftserver-beeline">(1) thriftserver beeline</a></li>
-        
-            <li><a class="toctree-l4" href="#2-thriftserver-monitor">(2) thriftserver monitor</a></li>
-        
-            <li><a class="toctree-l4" href="#3-thriftserver-restart">(3) thriftserver restart</a></li>
-        
-            <li><a class="toctree-l4" href="#4-start-thriftserver">(4) start thriftserver</a></li>
-        
-            <li><a class="toctree-l4" href="#5-stop-thriftserver">(5) stop thriftserver</a></li>
-        
-            <li><a class="toctree-l4" href="#6-conf-thriftserver">(6) conf thriftserver</a></li>
-        
-        </ul>
     
 
     </ul>
@@ -150,12 +121,24 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../data-ingestion-and-querying/">Data Ingestion and Querying</a>
+    <span class="caption-text">Operation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../version-update/">Version update</a>
+                </li>
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="../release-note/">Release Notes</a>
+    <span class="caption-text">Additional Resources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../get-started-with-scratch/">Manual Installation</a>
+                </li>
+    </ul>
 	    </li>
           
         </ul>
@@ -180,11 +163,11 @@
     
       
         
-          <li>FBCTL &raquo;</li>
+          <li>Interface &raquo;</li>
         
       
     
-    <li>Commands</li>
+    <li>Command Line</li>
     <li class="wy-breadcrumbs-aside">
       
         <a href="https://github.com/mnms/docs/edit/master/docs/command-line-interface.md"> Edit on source repository</a>
@@ -196,7 +179,11 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="1-cluster-commands">1. Cluster Commands<a class="headerlink" href="#1-cluster-commands" title="Permanent link">&para;</a></h1>
+                <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Command Line Interface(CLI) of LightningDB supports not only deploy and start command but also many commands to access and manipulate data in LightningDB.</p>
+</div>
+<h1 id="1-cluster-commands">1. Cluster Commands<a class="headerlink" href="#1-cluster-commands" title="Permanent link">&para;</a></h1>
 <p>If you want to see the list of cluster commands, use the 'cluster' command without any option.</p>
 <pre><code class="bash">ec2-user@flashbase:1&gt; cluster
 
@@ -245,12 +232,12 @@ COMMANDS
        Change selected cluster
 </code></pre>
 
-<h2 id="1-cluster-configure">(1) cluster configure<a class="headerlink" href="#1-cluster-configure" title="Permanent link">&para;</a></h2>
+<p><strong>(1) cluster configure</strong></p>
 <p>redis-{port}.conf is generated with using redis-{master/slave}.conf.template and redis.properties.</p>
 <pre><code class="bash">&gt; cluster configure
 </code></pre>
 
-<h2 id="2-cluster-start">(2) cluster start<a class="headerlink" href="#2-cluster-start" title="Permanent link">&para;</a></h2>
+<p><strong>(2) cluster start</strong></p>
 <ul>
 <li>
 <p>Backup logs of the previous master/slave nodes</p>
@@ -335,7 +322,7 @@ For detail information, please check log files.</li>
 max try error
 </code></pre>
 
-<h2 id="3-cluster-create">(3) cluster create<a class="headerlink" href="#3-cluster-create" title="Permanent link">&para;</a></h2>
+<p><strong>(3) cluster create</strong></p>
 <p>After checking information of the cluster, create cluster of LightningDB.</p>
 <pre><code class="bash">ec2-user@flashbase:1&gt; cluster create
 Check status of hosts...
@@ -393,8 +380,8 @@ y
 127.0.0.1:18100 - [Errno 111] Connection refused
 </code></pre>
 
-<p>​​</p>
-<h2 id="4-cluster-stop">(4) cluster stop<a class="headerlink" href="#4-cluster-stop" title="Permanent link">&para;</a></h2>
+<p>​​
+<strong>(4) cluster stop</strong></p>
 <p>​Gracefully kill all redis-servers(master/slave) with SIGINT
 ​​</p>
 <pre><code class="bash">ec2-user@flashbase:1&gt; cluster stop
@@ -413,7 +400,7 @@ Complete all redis process down
 <pre><code class="bash">--force
 </code></pre>
 
-<h2 id="5-cluster-clean">(5) cluster clean<a class="headerlink" href="#5-cluster-clean" title="Permanent link">&para;</a></h2>
+<p><strong>(5) cluster clean</strong></p>
 <p>Remove conf files for redis-server and all data(aof, rdb, RocksDB) of LightningDB</p>
 <pre><code class="bash">ec2-user@flashbase:1&gt; cluster clean
 Removing redis generated master configuration files
@@ -424,7 +411,7 @@ Removing master node configuration
  - 127.0.0.1
 </code></pre>
 
-<h2 id="6-cluster-restart">(6) cluster restart​<a class="headerlink" href="#6-cluster-restart" title="Permanent link">&para;</a></h2>
+<p><strong>(6) cluster restart​</strong></p>
 <p>Process 'cluster stop' and then 'cluster start'.​​</p>
 <p><strong>Options</strong></p>
 <ul>
@@ -445,13 +432,13 @@ Removing master node configuration
 <pre><code class="bash">--cluster
 </code></pre>
 
-<h2 id="7-cluster-ls">(7) cluster ls<a class="headerlink" href="#7-cluster-ls" title="Permanent link">&para;</a></h2>
+<p><strong>(7) cluster ls</strong></p>
 <p>List up the deployed clusters.</p>
 <pre><code class="bash">ec2-user@flashbase:2&gt; cluster ls
 [1, 2]
 </code></pre>
 
-<h2 id="8-cluster-use">(8) cluster use<a class="headerlink" href="#8-cluster-use" title="Permanent link">&para;</a></h2>
+<p><strong>(8) cluster use</strong></p>
 <p>Change the cluster to use FBCTL. Use 'cluster use' or 'c' commands.</p>
 <pre><code class="bash">ec2-user@flashbase:2&gt; cluster use 1
 Cluster '1' selected.
@@ -459,7 +446,7 @@ ec2-user@flashbase:1&gt; c 2
 Cluster '2' selected.
 </code></pre>
 
-<h2 id="9-cluster-add_slave">(9) cluster add_slave<a class="headerlink" href="#9-cluster-add_slave" title="Permanent link">&para;</a></h2>
+<p><strong>(9) cluster add_slave</strong></p>
 <p>You can add a slave to a cluster that is configured only with master without redundancy.</p>
 <ul>
 <li>
@@ -729,13 +716,13 @@ f9f7fcee9009f25618e63d2771ee2529f814c131 127.0.0.1:18354 slave e67005a46984445e5
 
 </code></pre>
 
-<h2 id="10-cluster-rowcount">(10) cluster rowcount<a class="headerlink" href="#10-cluster-rowcount" title="Permanent link">&para;</a></h2>
+<p><strong>(10) cluster rowcount</strong></p>
 <p>Check the count of records that are stored in the cluster.</p>
 <pre><code class="bash">ec2-user@flashbase:1&gt; cluster rowcount
 0
 </code></pre>
 
-<h2 id="11-check-status-of-cluster">(11) Check status of cluster<a class="headerlink" href="#11-check-status-of-cluster" title="Permanent link">&para;</a></h2>
+<p><strong>(11) Check status of cluster</strong></p>
 <p>With the following commands, you can check the status of the cluster.</p>
 <ul>
 <li>Send PING</li>
@@ -803,7 +790,7 @@ COMMANDS
        Stop thriftserver
 </code></pre>
 
-<h2 id="1-thriftserver-beeline">(1) thriftserver beeline<a class="headerlink" href="#1-thriftserver-beeline" title="Permanent link">&para;</a></h2>
+<p><strong>(1) thriftserver beeline</strong></p>
 <p>Connect to the thrift server</p>
 <pre><code class="bash">ec2-user@flashbase:1&gt; thriftserver beeline
 Connecting...
@@ -825,7 +812,7 @@ No rows selected (0.55 seconds)
 
 <p>Default value of db url to connect is jdbc:hive2://$HIVE_HOST:$HIVE_PORT</p>
 <p>You can modify $HIVE_HOST and $HIVE_PORT by command conf ths</p>
-<h2 id="2-thriftserver-monitor">(2) thriftserver monitor<a class="headerlink" href="#2-thriftserver-monitor" title="Permanent link">&para;</a></h2>
+<p><strong>(2) thriftserver monitor</strong></p>
 <p>You can view the logs of the thrift server in real time.</p>
 <pre><code class="bash">ec2-user@flashbase:1&gt; thriftserver monitor
 Press Ctrl-C for exit.
@@ -835,27 +822,28 @@ Press Ctrl-C for exit.
 ...
 </code></pre>
 
-<h2 id="3-thriftserver-restart">(3) thriftserver restart<a class="headerlink" href="#3-thriftserver-restart" title="Permanent link">&para;</a></h2>
+<p><strong>(3) thriftserver restart</strong></p>
 <p>Restart the thrift server.</p>
 <pre><code class="bash">ec2-user@flashbase:1&gt; thriftserver restart
 no org.apache.spark.sql.hive.thriftserver.HiveThriftServer2 to stop
 starting org.apache.spark.sql.hive.thriftserver.HiveThriftServer2, logging to /opt/spark/logs/spark-ec2-user-org.apache.spark.sql.hive.thriftserver.HiveThriftServer2-1-ip-172-31-39-147.ap-northeast-2.compute.internal.out
 </code></pre>
 
-<h2 id="4-start-thriftserver">(4) start thriftserver<a class="headerlink" href="#4-start-thriftserver" title="Permanent link">&para;</a></h2>
+<p><strong>(4) start thriftserver</strong></p>
 <p>Run the thrift server.</p>
 <pre><code class="bash">ec2-user@flashbase:1&gt; thriftserver start
 starting org.apache.spark.sql.hive.thriftserver.HiveThriftServer2, logging to /opt/spark/logs/spark-ec2-user-org.apache.spark.sql.hive.thriftserver.HiveThriftServer2-1-ip-172-31-39-147.ap-northeast-2.compute.internal.out
 </code></pre>
 
-<p>You can view the logs through the command <strong>monitor</strong>.</p>
-<h2 id="5-stop-thriftserver">(5) stop thriftserver<a class="headerlink" href="#5-stop-thriftserver" title="Permanent link">&para;</a></h2>
+<p>You can view the logs through the command </p>
+<p><strong>monitor</strong>.</p>
+<p><strong>(5) stop thriftserver</strong></p>
 <p>Shut down the thrift server.</p>
 <pre><code class="bash">ec2-user@flashbase:1&gt; thriftserver stop
 stopping org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
 </code></pre>
 
-<h2 id="6-conf-thriftserver">(6) conf thriftserver<a class="headerlink" href="#6-conf-thriftserver" title="Permanent link">&para;</a></h2>
+<p><strong>(6) conf thriftserver</strong></p>
 <pre><code class="bash">ec2-user@flashbase:1&gt; conf thriftserver
 
 #!/bin/bash
@@ -914,10 +902,10 @@ SPARK_LOG_SAVE_MIN=2000
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../data-ingestion-and-querying/" class="btn btn-neutral float-right" title="Data Ingestion and Querying">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../version-update/" class="btn btn-neutral float-right" title="Version update">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../run-and-deploy-fbctl/" class="btn btn-neutral" title="Install and Upgrade"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../try-with-zeppelin/" class="btn btn-neutral" title="Try out with Zeppelin"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -945,10 +933,10 @@ SPARK_LOG_SAVE_MIN=2000
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../run-and-deploy-fbctl/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../try-with-zeppelin/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../data-ingestion-and-querying/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../version-update/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
