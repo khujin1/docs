@@ -207,9 +207,23 @@
 </ul>
 </li>
 </ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To launch Spark application on YARN, start YARN with running 'start-dfs.sh' and 'start-yarn.sh' in order.</p>
+</div>
 <h1 id="3-start-lightningdb">3. Start LightningDB<a class="headerlink" href="#3-start-lightningdb" title="Permanent link">&para;</a></h1>
 <p>LightningDB provides FBCTL that is introduced in <a href="../install-fbctl/">Installation</a>. With FBCTL, you can deploy and use LightningDB.</p>
 <p>LightningDB supports Zeppelin to provide convenience of ingestion and querying data of LightningDB. About Zeppelin, <a href="../try-with-zeppelin/">Try out with Zeppelin</a> page provides some guides.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To use Web UI of HDFS, YARN, Spark and Zeppelin, you should add the following ports to 'Edit inbound rules' of 'Security groups' in EC2 Instance.</p>
+<ul>
+<li>HDFS: 50070</li>
+<li>YARN: 8088</li>
+<li>Spark: 4040</li>
+<li>Zeppelin: 8080</li>
+</ul>
+</div>
               
             </div>
           </div>
