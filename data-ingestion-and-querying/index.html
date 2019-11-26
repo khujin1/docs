@@ -214,16 +214,30 @@ OPTIONS (
 
 <p>There are various options used to describe storage properties.</p>
 <ul>
-<li>table : Positive Integer. The identification of table. Redis indentifies a table with this value.</li>
-<li>host/port : The host/port of representative Redis Node. Using this host and port, Spark builds a Redis cluster client that retrieves and inserts data to the Redis cluster.</li>
-<li>partitions : The partitions columns. The partition column values are used to distribute data in Redis cluster. That is, the partition column values are concatenated with a colon(:) and used as KEY of Redis which is the criteria distributing data. For more information, you can refer <a href="https://redis.io/topics/cluster-spec#keys-distribution-model">Keys distribution model page</a> in Redis.</li>
+<li>
+<p><strong>table</strong> : Positive Integer. The identification of table. Redis indentifies a table with this value.</p>
+</li>
+<li>
+<p><strong>host/port</strong> : The host/port of representative Redis Node. Using this host and port, Spark builds a Redis cluster client that retrieves and inserts data to the Redis cluster.</p>
+</li>
+<li>
+<p><strong>partitions</strong> : The partitions columns. The partition column values are used to distribute data in Redis cluster. That is, the partition column values are concatenated with a colon(:) and used as KEY of Redis which is the criteria distributing data. For more information, you can refer <a href="https://redis.io/topics/cluster-spec#keys-distribution-model">Keys distribution model page</a> in Redis.</p>
+</li>
 </ul>
-<p>!!!Tip
-        Deciding a partition column properly is a crucial factor for performance because it is related to sharding data to multiple Redis nodes. It is important to try distribute KEYs to 16384 slots of REDIS evenly and to try to map at least 200 rows for each KEYs.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Deciding a partition column properly is a crucial factor for performance because it is related to sharding data to multiple Redis nodes. It is important to try distribute KEYs to 16384 slots of REDIS evenly and to try to map at least 200 rows for each KEYs.</p>
+</div>
 <ul>
-<li>mode : 'nvkvs' for this field</li>
-<li>at_least_one_partition_enabled : yes or no. If yes, the queries which do not have partition filter are not permitted.</li>
-<li>rowstore : true or false. If yes, all columns are merged and stored in RockDB as one column. It enhances ingesting performance. However, the query performance can be dropped because there is overhead for parsing columns in Redis layer when retrieving data from RockDB.</li>
+<li>
+<p><strong>mode</strong> : 'nvkvs' for this field</p>
+</li>
+<li>
+<p><strong>at_least_one_partition_enabled</strong> : yes or no. If yes, the queries which do not have partition filter are not permitted.</p>
+</li>
+<li>
+<p><strong>rowstore</strong> : true or false. If yes, all columns are merged and stored in RockDB as one column. It enhances ingesting performance. However, the query performance can be dropped because there is overhead for parsing columns in Redis layer when retrieving data from RockDB.</p>
+</li>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
