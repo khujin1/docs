@@ -116,6 +116,10 @@
                     
     <a class="" href="../command-line-interface/">Command Line</a>
                 </li>
+                <li class="">
+                    
+    <a class="" href="../data-ingestion-and-querying/">Data Ingestion and querying</a>
+                </li>
     </ul>
 	    </li>
           
@@ -183,14 +187,15 @@
 <p>You can try LightningDB in Zeppelin notebook.</p>
 <p>Firstly, deploy and start the cluster of LightningDB using <a href="../install-fbctl/">Installation</a> before launching Zeppelin daemon.</p>
 <p>Secondly, in order to run LightningDB on the Spark, the jars in the LightningDB should be passed to the Spark.
-Because this job is already done when EC2 Instance is initialized, just need to check the setting in 'zeppelin-env.sh'.</p>
+When EC2 Instance is initialized, the environment variable (<code>$SPARK_SUBMIT_OPTIONS</code>) is configured for this reason.
+Thus just need to check the setting in <code>zeppelin-env.sh</code>.</p>
 <pre><code class="bash">$ vim $ZEPPELIN_HOME/conf/zeppelin-env.sh 
-
-# /home/ec2-user/tsr2/cluster_1/tsr2-assembly-1.0.0-SNAPSHOT is a path in which LightningDB is installed using fbctl.
-# This can be different if you installed LightningDB in different path.
-export SPARK_SUBMIT_OPTIONS=&quot;--jars $(find /home/ec2-user/tsr2/cluster_1/tsr2-assembly-1.0.0-SNAPSHOT/lib -name 'tsr2*' \
--o -name 'spark-r2*' -o -name '*jedis*' -o -name 'commons*' -o -name 'jdeferred*' -o -name 'geospark*' \
--o -name 'gt-*' | tr '\n' ',')&quot;
+...
+LIGHTNINGDB_LIB_PATH=$(eval echo $(cat $FBPATH/config | head -n 1 | awk {'print $2'}))/cluster_$(cat $FBPATH/HEAD)/tsr2-assembly-1.0.0-SNAPSHOT/lib/
+if [[ -e $LIGHTNINGDB_LIB_PATH ]]; then
+    export SPARK_SUBMIT_OPTIONS=&quot;--jars $(find $LIGHTNINGDB_LIB_PATH -name 'tsr2*' -o -name 'spark-r2*' -o -name '*jedis*' -o -name 'commons*' -o -name 'jdeferred*' -o -name 'geospark*' -o -name 'gt-*' | tr '\n' ',')&quot;
+fi
+...
 </code></pre>
 
 <p>Finally, start Zeppelin daemon.</p>
@@ -200,10 +205,14 @@ $ ./zeppelin-daemon.sh start
 
 <h1 id="2-tutorial-with-zeppelin">2. Tutorial with Zeppelin<a class="headerlink" href="#2-tutorial-with-zeppelin" title="Permanent link">&para;</a></h1>
 <p>After starting zeppelin daemon, you can access zeppelin UI using browser. The url is <a href="https://your-server-ip:8080">https://your-server-ip:8080</a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>We recommend that you proceed with the tutorial at Chrome browser.</p>
+</div>
 <p>There is <a href="https://github.com/mnms/tutorials">a github page for tutorial</a>.</p>
-<p>The repository includes a tool for generating sample data and a notebook for tutorial.</p>
+<p>The repository includes a tool for generating sample csv data and a notebook for tutorial.</p>
 <p>You can import the tutorial notebook with its url.</p>
-<p>https://raw.githubusercontent.com/mnms/tutorials/master/zeppelin-notebook/note.json</p>
+<p><a href="https://raw.githubusercontent.com/mnms/tutorials/master/zeppelin-notebook/note.json">https://raw.githubusercontent.com/mnms/tutorials/master/zeppelin-notebook/note.json</a></p>
 <p><img alt="import notebook" src="../images/import_notebook.gif" /></p>
 <p>The tutorial runs on the spark interpreter of Zeppelin.
 Please make sure that the memory of Spark driver is at least 10GB in Spark interpreter setting.</p>
