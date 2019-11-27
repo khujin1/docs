@@ -502,6 +502,10 @@ Cluster '2' selected.
 </code></pre>
 
 <p><strong>(9) cluster add_slave</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Before using 'add-slave' command, ingestion to master nodes should be stopped. After replication and sync between master and slave are completed, ingestion will be availabe again.</p>
+</div>
 <p>You can add a slave to a cluster that is configured only with master without redundancy.</p>
 <ul>
 <li>
