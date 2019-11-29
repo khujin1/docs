@@ -309,8 +309,7 @@ We estimate that redis process is &lt;alive-redis-count&gt;.
 <ul>
 <li>Conf file not exist</li>
 </ul>
-<p>Conf file is not found. To resove this error, use 'cluster configure' and then 'cluster start'.
-cluster configure 명령어를 실행시킨 후 cluster start를 진행하세요.</p>
+<p>Conf file is not found. To resove this error, use 'cluster configure' and then 'cluster start'.</p>
 <pre><code class="bash">$ cluster start
 ...
 FileNotExistError: ${SR2_HOME}/conf/redis/redis-{port}.conf
@@ -323,7 +322,8 @@ For detail information, please check log files.</li>
 </ul>
 <pre><code class="bash">$ cluster start
 ...
-max try error
+ClusterRedisError: Fail to start redis: max try exceed
+Recommendation Command: 'monitor'
 </code></pre>
 
 <p><strong>(3) cluster create</strong></p>
@@ -751,10 +751,6 @@ replicate [M] 127.0.0.1 18301 - [S] 127.0.0.1 18351
 replicate [M] 127.0.0.1 18302 - [S] 127.0.0.1 18352
 replicate [M] 127.0.0.1 18303 - [S] 127.0.0.1 18353
 replicate [M] 127.0.0.1 18304 - [S] 127.0.0.1 18354
-1 / 5 meet complete.
-2 / 5 meet complete.
-3 / 5 meet complete.
-4 / 5 meet complete.
 5 / 5 meet complete.
 </code></pre>
 
@@ -884,7 +880,7 @@ No rows selected (0.55 seconds)
 </code></pre>
 
 <p>Default value of db url to connect is jdbc:hive2://$HIVE_HOST:$HIVE_PORT</p>
-<p>You can modify $HIVE_HOST and $HIVE_PORT by command conf ths</p>
+<p>You can modify $HIVE_HOST and $HIVE_PORT by command 'conf ths'</p>
 <p><strong>(2) thriftserver monitor</strong></p>
 <p>You can view the logs of the thrift server in real time.</p>
 <pre><code class="bash">ec2-user@flashbase:1&gt; thriftserver monitor
@@ -908,8 +904,7 @@ starting org.apache.spark.sql.hive.thriftserver.HiveThriftServer2, logging to /o
 starting org.apache.spark.sql.hive.thriftserver.HiveThriftServer2, logging to /opt/spark/logs/spark-ec2-user-org.apache.spark.sql.hive.thriftserver.HiveThriftServer2-1-ip-172-31-39-147.ap-northeast-2.compute.internal.out
 </code></pre>
 
-<p>You can view the logs through the command </p>
-<p><strong>monitor</strong>.</p>
+<p>You can view the logs through the command 'monitor'.</p>
 <p><strong>(5) stop thriftserver</strong></p>
 <p>Shut down the thrift server.</p>
 <pre><code class="bash">ec2-user@flashbase:1&gt; thriftserver stop

@@ -207,7 +207,7 @@ export FBPATH=$HOME/.flashbase
 </code></pre>
 
 <p>When FBCTL starts at the first time,  you needs to confirm 'base_directory'.</p>
-<p>[~/tsr2]<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>] is default value.</p>
+<p>[~/tsr2]<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> is default value.</p>
 <pre><code class="bash">Type base directory of flashbase [~/tsr2]
 ~/tsr2
 OK, ~/tsr2
@@ -244,7 +244,7 @@ root@flashbase:1&gt;
 <li>number of masters</li>
 <li>replicas</li>
 <li>number of ssd(disk)</li>
-<li>prefix of (redis data / redis db path / flash db path)</li>
+<li>prefix of db path (used for redis data /redis db path / flash db path )</li>
 </ul>
 <p>Use below option not to save last used value.</p>
 <pre><code class="bash">&gt; deploy --history-save=False
@@ -254,9 +254,10 @@ root@flashbase:1&gt;
 <pre><code class="bash">Select installer
 
     [ INSTALLER LIST ]
-    (1) flashbase.dev.master.dbcb9e.bin
-    (2) flashbase.trial.master.dbcb9e-dirty.bin
-    (3) flashbase.trial.master.dbcb9e.bin
+    (1) [DOWNLOAD] flashbase.dev.master.dbcb9e.bin
+    (2) [LOCAL] flashbase.dev.master.dbcb9e.bin
+    (3) [LOCAL] flashbase.trial.master.dbcb9e-dirty.bin
+    (4) [LOCAL] flashbase.trial.master.dbcb9e.bin
 
 Please enter the number, file path or url of the installer you want to use.
 you can also add file in list by copy to '$FBPATH/releases/'
@@ -264,8 +265,12 @@ you can also add file in list by copy to '$FBPATH/releases/'
 OK, flashbase.dev.master.dbcb9e.bin
 </code></pre>
 
-<p>With only URL, instead of file path, LightningDB can be installed like below.</p>
-<p>To copy the link of the recommended FlashBase version, use <a href="../release-note/">Release Notes</a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>LOCAL means installer file under path '$FBPATH/releases/' on your local.
+DOWNLOAD refers to a file that can be downloaded and up to 5 files are displayed in the latest order. To confirm the recommended FlashBase version, use <a href="../release-note/">Release Notes</a></p>
+</div>
+<p>Select a number to use that file. Type DOWNLOAD will be used after downloading. The downloaded file is saved in path '$FBPATH/releases'.</p>
 <pre><code class="bash">Select installer
 
     [ INSTALLER LIST ]
@@ -279,6 +284,7 @@ Downloading flashbase.dev.master.5a6a38.bin
 OK, flashbase.dev.master.5a6a38.bin
 </code></pre>
 
+<p>If installer list is empty like above, you can also use file path or url. If you enter url, download the file and use it. The downloaded file is saved in path '$FBPATH/releases'.</p>
 <p><strong>(2) Type Hosts</strong></p>
 <p>IP address or hostname can be used. In case of several hosts, list can be seperated by comma(',').</p>
 <pre><code class="bash">Please type host list separated by comma(,) [127.0.0.1]
