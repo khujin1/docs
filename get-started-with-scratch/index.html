@@ -331,17 +331,17 @@ cat .ssh/id_rsa.pub | ssh {server name} &quot;cat &gt;&gt; .ssh/authorized_keys&
 </ul>
 <p>(1) Intel MKL 2019 library install</p>
 <ul>
-<li>go to the website: https://software.intel.com/en-us/mkl/choose-download/macos</li>
-<li>register and login</li>
-<li>select product named "Intel * Math Kernel Library for Linux" or "Intel * Math Kernel Library for Mac" from the select box "Choose Product to Download"</li>
+<li>Go to the website: https://software.intel.com/en-us/mkl/choose-download/macos</li>
+<li>Register and login</li>
+<li>Select product named "Intel * Math Kernel Library for Linux" or "Intel * Math Kernel Library for Mac" from the select box "Choose Product to Download"</li>
 <li>Choose a Version "2019 Update 2" and download</li>
-<li>unzip the file and execute the install.sh file with root account or (sudo command)</li>
+<li>Unzip the file and execute the install.sh file with root account or (sudo command)</li>
 </ul>
 <pre><code class="bash">    sudo ./install.sh
 </code></pre>
 
 <ul>
-<li>choose custom install and configure the install directory /opt/intel (with sudo, /opt/intel is the default installation path, just confirm it)</li>
+<li>Choose custom install and configure the install directory /opt/intel (with sudo, /opt/intel is the default installation path, just confirm it)</li>
 </ul>
 <pre><code class="bash">matthew@fbg05 /opt/intel $ pwd
 /opt/intel
@@ -367,7 +367,7 @@ lrwxrwxrwx   1 root root  33  3월 22 01:34 tbb -&gt; compilers_and_libraries/li
 
 <p>(2) Intel MKL 2019 library environment settings</p>
 <ul>
-<li>append the following statement into ~/.bashrc</li>
+<li>Append the following statement into ~/.bashrc</li>
 </ul>
 <pre><code class="bash"># INTEL MKL enviroment variables for ($MKLROOT, can be checked with the value export | grep MKL)
 source /opt/intel/mkl/bin/mklvars.sh intel64
@@ -411,8 +411,8 @@ alias cfc='source ~/.use_cluster'
 </code></pre>
 
 <h1 id="4-install-and-start-lightningdb">4. Install and Start LightningDB<a class="headerlink" href="#4-install-and-start-lightningdb" title="Permanent link">&para;</a></h1>
-<p>With FBCTL provided by LightningDB, user can deploy and use LightningDB.</p>
-<p>Install FBCTL with following command.</p>
+<p>With FBCTL provided by LightningDB, users can deploy and use LightningDB.</p>
+<p>Install FBCTL with the following command.</p>
 <pre><code class="bash">$ pip insatll fbctl
 </code></pre>
 

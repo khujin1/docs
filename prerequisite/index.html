@@ -191,20 +191,20 @@
 <p>This page guides how to start LightningDB automatically only for the case of <strong>AWS EC2 Instance</strong>.</p>
 </div>
 <h1 id="1-access-ec2-instance">1. Access EC2 Instance<a class="headerlink" href="#1-access-ec2-instance" title="Permanent link">&para;</a></h1>
-<p>Create EC2 Instance for LightningDB and  access with 'Public IP' or 'Public DNS'.</p>
+<p>Create a EC2 Instance for LightningDB and  access with 'Public IP' or 'Public DNS'.</p>
 <p>'*.pem' file is also required to access EC2 Instance.</p>
 <pre><code class="bash">$ ssh -i /path/to/.pem ec2-user@${IP_ADDRESS}
 </code></pre>
 
 <h1 id="2-setup-environment">2. Setup environment<a class="headerlink" href="#2-setup-environment" title="Permanent link">&para;</a></h1>
-<p>When you access EC2 Instance, following jobs are already done.</p>
+<p>When you access EC2 Instance, the following jobs are already done.</p>
 <ul>
 <li>Create and exchange SSH KEY for user authentication</li>
 <li>Mount disks</li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Before starting LightningDB, please check if disk mount is completed with using 'lsblk' like below.</p>
+<p>Before starting LightningDB, please check if the disk mount is completed using 'lsblk' like below.</p>
 </div>
 <pre><code class="bash">[ec2-user@ip-172-31-34-115 ~]$ lsblk
 NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
@@ -233,7 +233,7 @@ nvme2n1 259:3    0  1.7T  0 disk /nvme/data_04
 </div>
 <h1 id="3-start-lightningdb">3. Start LightningDB<a class="headerlink" href="#3-start-lightningdb" title="Permanent link">&para;</a></h1>
 <p>LightningDB provides FBCTL that is introduced in <a href="../install-fbctl/">Installation</a>. With FBCTL, you can deploy and use LightningDB.</p>
-<p>LightningDB supports Zeppelin to provide convenience of ingestion and querying data of LightningDB. About Zeppelin, <a href="../try-with-zeppelin/">Try out with Zeppelin</a> page provides some guides.</p>
+<p>LightningDB supports Zeppelin to provide the convenience of ingestion and querying data of LightningDB. About Zeppelin, <a href="../try-with-zeppelin/">Try out with Zeppelin</a> page provides some guides.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>To use Web UI of HDFS, YARN, Spark and Zeppelin, you should add the following ports to 'Edit inbound rules' of 'Security groups' in EC2 Instance.</p>
